@@ -11,6 +11,8 @@ import 'package:time_trak/features/timesheet/presentation/providers/monthly_time
 
 import 'summary.dart';
 import 'days_table.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class MonthlyTimesheet extends StatelessWidget {
   const MonthlyTimesheet({super.key});
@@ -96,10 +98,10 @@ class MonthlyTimesheet extends StatelessWidget {
                     ? null
                     : () => _export(context, month, days),
                 icon: const Icon(Icons.download_rounded, size: 18),
-                label: const Text('Export CSV'),
+                label: const Text(AppStrings.exportCsv),
               ),
               IconButton(
-                tooltip: 'Refresh',
+                tooltip: AppStrings.refresh,
                 onPressed: c.isLoading ? null : c.refresh,
                 icon: const Icon(Icons.refresh_rounded),
               ),

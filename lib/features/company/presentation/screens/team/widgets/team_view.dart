@@ -9,6 +9,8 @@ import 'company_tab.dart';
 import 'members_tab.dart';
 import 'team_actions.dart';
 import 'reports_tab.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class TeamView extends StatelessWidget {
   final bool platformView;
@@ -42,13 +44,13 @@ class TeamView extends StatelessWidget {
             actions: [
               ...extraActions,
               IconButton(
-                tooltip: 'Refresh',
+                tooltip: AppStrings.refresh,
                 onPressed: team.isLoading ? null : team.load,
                 icon: const Icon(Icons.refresh_rounded),
               ),
               if (canInvite)
                 GradientButton(
-                  label: 'Invite',
+                  label: AppStrings.invite,
                   icon: Icons.person_add_alt_1_rounded,
                   onPressed: actions.invite,
                 ),
@@ -78,7 +80,7 @@ class TeamView extends StatelessWidget {
               ? const Center(child: CircularProgressIndicator())
               : team.error != null
               ? ErrorState(
-                  title: 'Could not load the team',
+                  title: AppStrings.couldNotLoadTheTeam,
                   error: team.error,
                   onRetry: team.load,
                 )
@@ -136,7 +138,7 @@ class TeamView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           flexibleSpace: const GlassBar(child: SizedBox.expand()),
           leading: const BackButton(),
-          title: const Text('Company'),
+          title: const Text(AppStrings.company),
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1),
             child: Container(height: 1, color: context.colors.border),

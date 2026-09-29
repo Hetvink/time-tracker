@@ -5,6 +5,8 @@ import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../../data/models/company.dart';
 import '../../../providers/company_provider.dart';
 import '../../../widgets/company_details_form.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class RegisterCompanyCard extends StatelessWidget {
   final bool expanded;
@@ -23,8 +25,7 @@ class RegisterCompanyCard extends StatelessWidget {
     final provider = context.read<CompanyProvider>();
     return AppCard(
       title: initial == null ? 'Register your company' : 'Submit a new request',
-      subtitle:
-          'After approval you become the company admin and can invite your team.',
+      subtitle: AppStrings.afterApprovalYouBecomeTheCompanyAdminAndCanInviteYourTeam,
       icon: Icons.add_business_rounded,
       child: AnimatedSize(
         duration: const Duration(milliseconds: 300),
@@ -50,7 +51,7 @@ class RegisterCompanyCard extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: onExpand,
                   icon: const Icon(Icons.add_rounded, size: 18),
-                  label: const Text('Start registration'),
+                  label: const Text(AppStrings.startRegistration),
                 ),
               ),
       ),

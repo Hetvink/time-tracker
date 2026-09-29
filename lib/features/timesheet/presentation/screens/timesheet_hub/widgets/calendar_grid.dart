@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/features/tracking/presentation/providers/activity_tracking_provider.dart';
 import 'package:time_trak/features/timesheet/presentation/widgets/activity_timesheet_view.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class CalendarGrid extends StatefulWidget {
   const CalendarGrid({super.key});
@@ -50,7 +52,7 @@ class CalendarGridState extends State<CalendarGrid> {
               TextButton.icon(
                 onPressed: provider.refreshMonth,
                 icon: const Icon(Icons.refresh_rounded, size: 18),
-                label: const Text('Refresh'),
+                label: const Text(AppStrings.refresh),
               ),
             ],
           ),

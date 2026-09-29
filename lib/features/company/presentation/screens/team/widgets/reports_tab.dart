@@ -11,6 +11,8 @@ import '../../../../data/models/company.dart';
 import '../../../../data/models/team_member.dart';
 import '../../../../data/repository/company_repository.dart';
 import '../team_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class MemberMonthRow {
   final TeamMember member;
@@ -235,7 +237,7 @@ class ReportsTabState extends State<ReportsTab> {
           OutlinedButton.icon(
             onPressed: sorted.isEmpty ? null : () => _exportSummary(sorted),
             icon: const Icon(Icons.download_rounded, size: 18),
-            label: const Text('Export summary'),
+            label: const Text(AppStrings.exportSummary),
           ),
         ],
       ),
@@ -251,14 +253,14 @@ class ReportsTabState extends State<ReportsTab> {
             color: AppColors.primary,
           ),
           KpiCard.duration(
-            label: 'Average per member',
+            label: AppStrings.averagePerMember,
             duration: tracked == 0 ? Duration.zero : total ~/ tracked,
             icon: Icons.person_rounded,
             color: AppColors.cyan,
             caption: '$tracked of ${sorted.length} tracked',
           ),
           KpiCard(
-            label: 'Top performer',
+            label: AppStrings.topPerformer,
             value: sorted.isEmpty || max == Duration.zero
                 ? '—'
                 : sorted.first.displayName,
@@ -270,7 +272,7 @@ class ReportsTabState extends State<ReportsTab> {
       ),
       AppCard(
         title: 'Ranking $_periodLabel',
-        subtitle: 'Tap a member for their full analytics',
+        subtitle: AppStrings.tapAMemberForTheirFullAnalytics,
         icon: Icons.leaderboard_rounded,
         bodyPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
         child: Column(
@@ -322,7 +324,7 @@ class ReportsTabState extends State<ReportsTab> {
         ),
       ),
       AppCard(
-        title: 'Detailed monthly report',
+        title: AppStrings.detailedMonthlyReport,
         subtitle:
             'Active days, averages, usual hours and sessions for ${DateFormat('MMMM').format(DateTime.now())}',
         icon: Icons.analytics_rounded,
@@ -331,7 +333,7 @@ class ReportsTabState extends State<ReportsTab> {
             TextButton.icon(
               onPressed: _exportDetail,
               icon: const Icon(Icons.download_rounded, size: 16),
-              label: const Text('CSV'),
+              label: const Text(AppStrings.csv),
             ),
         ],
         child: _detail == null
@@ -358,7 +360,7 @@ class ReportsTabState extends State<ReportsTab> {
                     ),
                   ] else
                     GradientButton(
-                      label: 'Build report',
+                      label: AppStrings.buildReport,
                       icon: Icons.auto_graph_rounded,
                       onPressed: widget.members.isEmpty ? null : _loadDetail,
                     ),
@@ -397,14 +399,14 @@ class DetailTable extends StatelessWidget {
         columnSpacing: 28,
         showCheckboxColumn: false,
         columns: const [
-          DataColumn(label: Text('Member')),
-          DataColumn(label: Text('Worked'), numeric: true),
-          DataColumn(label: Text('Days'), numeric: true),
-          DataColumn(label: Text('Avg / day'), numeric: true),
-          DataColumn(label: Text('Sessions'), numeric: true),
-          DataColumn(label: Text('Breaks'), numeric: true),
-          DataColumn(label: Text('Usual hours')),
-          DataColumn(label: Text('Streak'), numeric: true),
+          DataColumn(label: Text(AppStrings.member)),
+          DataColumn(label: Text(AppStrings.worked), numeric: true),
+          DataColumn(label: Text(AppStrings.days), numeric: true),
+          DataColumn(label: Text(AppStrings.avgDay), numeric: true),
+          DataColumn(label: Text(AppStrings.sessions), numeric: true),
+          DataColumn(label: Text(AppStrings.breaks), numeric: true),
+          DataColumn(label: Text(AppStrings.usualHours)),
+          DataColumn(label: Text(AppStrings.streak), numeric: true),
         ],
         rows: [
           for (final r in rows)

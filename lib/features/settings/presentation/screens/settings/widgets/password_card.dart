@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/features/auth/presentation/providers/auth_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class PasswordCard extends StatefulWidget {
   const PasswordCard({super.key});
@@ -84,7 +86,7 @@ class PasswordCardState extends State<PasswordCard> {
           Align(
             alignment: Alignment.centerRight,
             child: GradientButton(
-              label: 'Update password',
+              label: AppStrings.updatePassword,
               icon: Icons.key_rounded,
               loading: busy,
               onPressed: _save,

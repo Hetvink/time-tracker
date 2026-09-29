@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.joflee.tracker"
+    namespace = "com.timetrak.tracker"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.joflee.tracker"
+        applicationId = "com.timetrak.tracker"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

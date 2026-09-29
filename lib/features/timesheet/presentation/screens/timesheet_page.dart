@@ -10,6 +10,8 @@ import '../../../../theme/macos_theme.dart';
 import '../../../tracking/presentation/widgets/session_card.dart';
 import '../../../tracking/data/models/attendance_state.dart';
 import '../widgets/live_timesheet_summary.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class TimeSheetPage extends StatelessWidget {
   const TimeSheetPage({super.key});
@@ -56,7 +58,7 @@ class TimeSheetPage extends StatelessWidget {
                                         );
                                       },
                                       icon: const Icon(Icons.refresh_rounded),
-                                      tooltip: 'Refresh',
+                                      tooltip: AppStrings.refresh,
                                     ),
                                     const SizedBox(width: 8),
                                     // Date Picker Button

@@ -7,6 +7,8 @@ import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../data/models/company.dart';
 import '../providers/company_provider.dart';
 import 'onboarding/onboarding_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Sits between sign-in and the main app. Shows onboarding for users without
 /// a company and a notice for deactivated users or suspended companies;
@@ -42,7 +44,7 @@ class CompanyGate extends StatelessWidget {
         OutlinedButton.icon(
           onPressed: context.read<AuthProvider>().signOut,
           icon: const Icon(Icons.logout_rounded, size: 18),
-          label: const Text('Sign out'),
+          label: const Text(AppStrings.signOut),
         ),
       ],
     );
@@ -52,7 +54,7 @@ class CompanyGate extends StatelessWidget {
         return notice(
           icon: Icons.cloud_off_rounded,
           color: AppColors.danger,
-          title: 'Could not load your account',
+          title: AppStrings.couldNotLoadYourAccount,
           message: company.error!,
           primaryLabel: 'Try again',
         );
@@ -67,7 +69,7 @@ class CompanyGate extends StatelessWidget {
       return notice(
         icon: Icons.person_off_rounded,
         color: AppColors.warning,
-        title: 'Account deactivated',
+        title: AppStrings.accountDeactivated,
         message:
             'Your ${ctx.company?.name ?? 'company'} admin has deactivated your account. Contact them to regain access.',
         primaryLabel: 'Check again',

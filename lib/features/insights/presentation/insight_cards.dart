@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import '../../../core/widgets/charts.dart';
 import '../../../core/widgets/ui_kit.dart';
 import '../data/insights.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Cards that render an [Insights] object. Shared by the personal pages and
 /// the admin member profile.
@@ -55,7 +57,7 @@ class InsightKpis extends StatelessWidget {
               : 'Goal ${formatHm(goal)} per day',
         ),
         KpiCard(
-          label: 'Sessions',
+          label: AppStrings.sessions,
           numeric: i.sessionCount.toDouble(),
           format: (v) => v.round().toString(),
           icon: Icons.layers_rounded,
@@ -108,7 +110,7 @@ class DailyTrendCard extends StatelessWidget {
         if (goal > Duration.zero)
           const Padding(
             padding: EdgeInsets.only(right: 8),
-            child: LegendDot(color: AppColors.success, label: 'Goal'),
+            child: LegendDot(color: AppColors.success, label: AppStrings.goal),
           ),
       ],
       child: HoursBarChart(
@@ -147,7 +149,7 @@ class HourlyCard extends StatelessWidget {
         ? 1
         : (insights.activeDays == 0 ? 1 : insights.activeDays);
     return AppCard(
-      title: 'Hour by hour',
+      title: AppStrings.hourByHour,
       subtitle: h[peak] == Duration.zero
           ? 'No activity'
           : 'Most active around ${peak.toString().padLeft(2, '0')}:00',
@@ -186,8 +188,8 @@ class WeekdayCard extends StatelessWidget {
       counts[d.weekday - 1]++;
     }
     return AppCard(
-      title: 'Weekday rhythm',
-      subtitle: 'Average hours per weekday',
+      title: AppStrings.weekdayRhythm,
+      subtitle: AppStrings.averageHoursPerWeekday,
       icon: Icons.view_week_rounded,
       child: HoursBarChart(
         height: 180,
@@ -251,7 +253,7 @@ class _AppUsageCardState extends State<AppUsageCard> {
           height: 180,
           child: EmptyState(
             icon: Icons.apps_outage_rounded,
-            title: 'No app activity',
+            title: AppStrings.noAppActivity,
             message: 'App usage appears once the desktop tracker records it.',
           ),
         ),
@@ -375,7 +377,7 @@ class _SessionsCardState extends State<SessionsCard> {
               padding: EdgeInsets.all(24),
               child: EmptyState(
                 icon: Icons.event_busy_rounded,
-                title: 'No sessions',
+                title: AppStrings.noSessions,
                 message: 'Nothing was tracked in this period.',
               ),
             )
@@ -441,25 +443,25 @@ class _SessionTile extends StatelessWidget {
         ),
         children: [
           InfoRow(
-            label: 'Checked in',
+            label: AppStrings.checkedIn,
             value: '${formatTime(s.start)} · ${prettySource(s.checkInSource)}',
             icon: Icons.login_rounded,
           ),
           InfoRow(
-            label: 'Checked out',
+            label: AppStrings.checkedOut,
             value: s.isOpen
                 ? 'Still running'
                 : '${formatTime(s.end)} · ${prettySource(s.checkOutSource)}',
             icon: Icons.logout_rounded,
           ),
           InfoRow(
-            label: 'Span',
+            label: AppStrings.span,
             value: formatHm(s.span),
             icon: Icons.straighten_rounded,
           ),
           if (s.sleepTime > Duration.zero)
             InfoRow(
-              label: 'Worked while machine slept',
+              label: AppStrings.workedWhileMachineSlept,
               value: formatHm(s.sleepTime),
               icon: Icons.bedtime_rounded,
               valueColor: AppColors.pink,
@@ -539,7 +541,7 @@ class DayTimelineCard extends StatelessWidget {
     ];
 
     return AppCard(
-      title: 'Timeline',
+      title: AppStrings.timeline,
       subtitle: DateFormat('EEEE d MMMM').format(day),
       icon: Icons.view_timeline_rounded,
       child: segments.isEmpty
@@ -547,7 +549,7 @@ class DayTimelineCard extends StatelessWidget {
               height: 140,
               child: EmptyState(
                 icon: Icons.hourglass_empty_rounded,
-                title: 'Nothing tracked this day',
+                title: AppStrings.nothingTrackedThisDay,
               ),
             )
           : Column(
@@ -559,14 +561,14 @@ class DayTimelineCard extends StatelessWidget {
                   spacing: 16,
                   runSpacing: 8,
                   children: [
-                    LegendDot(color: AppColors.primary, label: 'Working'),
-                    LegendDot(color: AppColors.warning, label: 'Break'),
+                    LegendDot(color: AppColors.primary, label: AppStrings.working),
+                    LegendDot(color: AppColors.warning, label: AppStrings.breakText),
                     LegendDot(
                       color: AppColors.pink,
-                      label: 'Worked while asleep',
+                      label: AppStrings.workedWhileAsleep,
                     ),
-                    LegendDot(color: AppColors.cyan, label: 'Apps (thin lane)'),
-                    LegendDot(color: AppColors.danger, label: 'Now'),
+                    LegendDot(color: AppColors.cyan, label: AppStrings.appsThinLane),
+                    LegendDot(color: AppColors.danger, label: AppStrings.now),
                   ],
                 ),
               ],
@@ -622,7 +624,7 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
         widget.insights.apps[i].name: i,
     };
     return AppCard(
-      title: 'Activity log',
+      title: AppStrings.activityLog,
       subtitle: '${widget.insights.activities.length} app switches',
       icon: Icons.receipt_long_rounded,
       child: Column(
@@ -639,7 +641,7 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
               padding: EdgeInsets.all(16),
               child: EmptyState(
                 icon: Icons.search_off_rounded,
-                title: 'No matching activity',
+                title: AppStrings.noMatchingActivity,
               ),
             )
           else ...[
@@ -734,7 +736,7 @@ class HeatmapCard extends StatelessWidget {
     };
     final metGoal = values.values.where((d) => d >= goal).length;
     return AppCard(
-      title: 'Calendar',
+      title: AppStrings.calendar,
       subtitle:
           '$metGoal day${metGoal == 1 ? '' : 's'} hit the ${formatHm(goal)} goal',
       icon: Icons.calendar_month_rounded,
@@ -778,53 +780,53 @@ class HabitsCard extends StatelessWidget {
                   100)
               .round();
     return AppCard(
-      title: 'Work habits',
+      title: AppStrings.workHabits,
       icon: Icons.psychology_rounded,
       child: Column(
         children: [
           InfoRow(
             icon: Icons.wb_sunny_rounded,
-            label: 'Usual start',
+            label: AppStrings.usualStart,
             value: _tod(start),
           ),
           InfoRow(
             icon: Icons.nights_stay_rounded,
-            label: 'Usual finish',
+            label: AppStrings.usualFinish,
             value: _tod(end),
           ),
           InfoRow(
             icon: Icons.local_fire_department_rounded,
-            label: 'Current streak',
+            label: AppStrings.currentStreak,
             value: '${i.streak} day${i.streak == 1 ? '' : 's'}',
             valueColor: AppColors.warning,
           ),
           InfoRow(
             icon: Icons.emoji_events_rounded,
-            label: 'Best day',
+            label: AppStrings.bestDay,
             value: best == null
                 ? '—'
                 : '${DateFormat('d MMM').format(best.key)} · ${formatHm(best.value)}',
           ),
           InfoRow(
             icon: Icons.flag_rounded,
-            label: 'Days at goal',
+            label: AppStrings.daysAtGoal,
             value: '$goalDays of ${i.activeDays}',
             valueColor: AppColors.success,
           ),
           InfoRow(
             icon: Icons.coffee_rounded,
-            label: 'Break share',
+            label: AppStrings.breakShare,
             value: '$breakShare%',
           ),
           InfoRow(
             icon: Icons.center_focus_strong_rounded,
-            label: 'Focus (top 3 apps)',
+            label: AppStrings.focusTop3Apps,
             value: '${(i.focusScore * 100).round()}%',
           ),
           if (i.sleepTotal > Duration.zero)
             InfoRow(
               icon: Icons.bedtime_rounded,
-              label: 'Worked while asleep',
+              label: AppStrings.workedWhileAsleep,
               value: formatHm(i.sleepTotal),
               valueColor: AppColors.pink,
             ),
@@ -871,19 +873,19 @@ class DailyTableCard extends StatelessWidget {
 
     Widget status(Duration worked) {
       if (worked == Duration.zero) {
-        return StatusPill(label: 'Off', color: colors.textSubtle);
+        return StatusPill(label: AppStrings.off, color: colors.textSubtle);
       }
       if (worked >= goal) {
         return const StatusPill(
-          label: 'Goal met',
+          label: AppStrings.goalMet,
           color: AppColors.success,
           icon: Icons.check_rounded,
         );
       }
       if (worked >= goal * 0.5) {
-        return const StatusPill(label: 'Partial', color: AppColors.warning);
+        return const StatusPill(label: AppStrings.partial, color: AppColors.warning);
       }
-      return const StatusPill(label: 'Short', color: AppColors.danger);
+      return const StatusPill(label: AppStrings.short, color: AppColors.danger);
     }
 
     final compact = context.isPhone;
@@ -893,7 +895,7 @@ class DailyTableCard extends StatelessWidget {
     final head = context.text.labelMedium?.copyWith(color: colors.textMuted);
 
     return AppCard(
-      title: 'Day by day',
+      title: AppStrings.dayByDay,
       icon: Icons.table_rows_rounded,
       bodyPadding: const EdgeInsets.fromLTRB(8, 12, 8, 8),
       child: Column(

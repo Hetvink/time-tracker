@@ -8,6 +8,8 @@ import '../../../tracking/presentation/providers/activity_tracking_provider.dart
 import '../../../tracking/data/repository/attendance_repository.dart';
 import '../../../../theme/macos_theme.dart';
 import 'activity_detail_dialog.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Custom ScrollBehavior for web to enable drag scrolling
 class WebScrollBehavior extends MaterialScrollBehavior {
@@ -264,7 +266,7 @@ class _ActivityTimesheetViewState extends State<ActivityTimesheetView> {
               widget.onMonthChanged?.call();
             },
             icon: const Icon(Icons.chevron_left, size: 20),
-            tooltip: 'Previous month',
+            tooltip: AppStrings.previousMonth,
           ),
           IconButton(
             onPressed: () {
@@ -276,7 +278,7 @@ class _ActivityTimesheetViewState extends State<ActivityTimesheetView> {
               widget.onMonthChanged?.call();
             },
             icon: const Icon(Icons.chevron_right, size: 20),
-            tooltip: 'Next month',
+            tooltip: AppStrings.nextMonth,
           ),
           const SizedBox(width: 8),
           ElevatedButton.icon(
@@ -285,7 +287,7 @@ class _ActivityTimesheetViewState extends State<ActivityTimesheetView> {
               widget.onMonthChanged?.call();
             },
             icon: const Icon(Icons.today, size: 16),
-            label: const Text('Today'),
+            label: const Text(AppStrings.today),
             style: ElevatedButton.styleFrom(
               backgroundColor: MacOSTheme.systemBlue,
               foregroundColor: Colors.white,

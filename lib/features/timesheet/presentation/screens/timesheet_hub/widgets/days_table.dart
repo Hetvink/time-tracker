@@ -7,6 +7,8 @@ import 'package:time_trak/features/timesheet/data/models/daily_timesheet.dart';
 
 import 'date_badge.dart';
 import 'goal_bar.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class DaysTable extends StatelessWidget {
   final List<DailyTimeSheet> days;
@@ -24,8 +26,8 @@ class DaysTable extends StatelessWidget {
     final today = DateUtils.dateOnly(DateTime.now());
 
     return AppCard(
-      title: 'Daily breakdown',
-      subtitle: 'Tap a day to see its sessions',
+      title: AppStrings.dailyBreakdown,
+      subtitle: AppStrings.tapADayToSeeItsSessions,
       icon: Icons.table_rows_rounded,
       bodyPadding: const EdgeInsets.fromLTRB(8, 12, 8, 8),
       child: Column(
@@ -233,20 +235,20 @@ class DaysTable extends StatelessWidget {
                     const SizedBox(height: 8),
                     InfoRow(
                       icon: Icons.login_rounded,
-                      label: 'Check in',
+                      label: AppStrings.checkIn,
                       value:
                           '${formatTime(s.checkInTime)} · ${prettySource(s.checkInSource.name)}',
                     ),
                     InfoRow(
                       icon: Icons.logout_rounded,
-                      label: 'Check out',
+                      label: AppStrings.checkOut,
                       value: s.checkOutTime == null
                           ? '—'
                           : '${formatTime(s.checkOutTime)} · ${prettySource(s.checkOutSource?.name)}',
                     ),
                     InfoRow(
                       icon: Icons.timer_rounded,
-                      label: 'Worked',
+                      label: AppStrings.worked,
                       value: formatHm(s.workDuration),
                       valueColor: AppColors.primary,
                     ),
@@ -261,7 +263,7 @@ class DaysTable extends StatelessWidget {
                     if (s.continuationReason != null)
                       InfoRow(
                         icon: Icons.link_rounded,
-                        label: 'Continued',
+                        label: AppStrings.continued,
                         value: s.continuationReason!,
                       ),
                   ],

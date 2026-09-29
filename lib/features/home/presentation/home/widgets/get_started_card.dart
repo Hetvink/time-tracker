@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:time_trak/core/constants/app_env.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class GetStartedCard extends StatelessWidget {
   const GetStartedCard({super.key});
@@ -47,7 +49,7 @@ class GetStartedCard extends StatelessWidget {
           ),
           if (url != null)
             GradientButton(
-              label: 'Download tracker',
+              label: AppStrings.downloadTracker,
               icon: Icons.download_rounded,
               onPressed: () => launchUrl(Uri.parse(url)),
             ),

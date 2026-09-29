@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../../data/repository/admin_repository.dart';
 import '../providers/admin_dashboard_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class UserActivityOverview extends StatelessWidget {
   final String userId;
@@ -61,7 +63,7 @@ class UserActivityOverview extends StatelessWidget {
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () => adminProvider.refreshData(),
-                      child: const Text('Retry'),
+                      child: const Text(AppStrings.retry),
                     ),
                   ],
                 ),
@@ -262,8 +264,8 @@ class UserActivityOverview extends StatelessWidget {
     List<Map<String, dynamic>> recentSessions = const [],
   ]) {
     return _buildCard(
-      title: 'Recent Sessions',
-      subtitle: 'Last 10 sessions · 30 days',
+      title: AppStrings.recentSessions2,
+      subtitle: AppStrings.last10Sessions30Days,
       child: recentSessions.isEmpty
           ? _buildEmpty('No recent sessions')
           : Column(
@@ -381,8 +383,8 @@ class UserActivityOverview extends StatelessWidget {
         : 1;
 
     return _buildCard(
-      title: 'App Usage',
-      subtitle: 'Top 10 apps · Last 7 days',
+      title: AppStrings.appUsage,
+      subtitle: AppStrings.top10AppsLast7Days,
       child: appBreakdown.isEmpty
           ? _buildEmpty('No app activity data')
           : Column(

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/features/auth/presentation/providers/auth_provider.dart';
 import 'package:time_trak/features/company/presentation/providers/company_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class ProfileCard extends StatefulWidget {
   const ProfileCard({super.key});
@@ -101,7 +103,7 @@ class ProfileCardState extends State<ProfileCard> {
           child: ListenableBuilder(
             listenable: _submit,
             builder: (context, _) => GradientButton(
-              label: 'Save',
+              label: AppStrings.save,
               icon: Icons.check_rounded,
               loading: _submit.isBusy,
               onPressed: _save,

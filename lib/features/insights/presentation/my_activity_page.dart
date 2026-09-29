@@ -6,6 +6,8 @@ import '../../auth/presentation/providers/auth_provider.dart';
 import '../../company/presentation/providers/company_provider.dart';
 import '../../settings/presentation/providers/settings_provider.dart';
 import 'insight_views.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// The signed-in user's own analytics.
 class MyActivityPage extends StatelessWidget {
@@ -39,8 +41,8 @@ class MyActivityPage extends StatelessWidget {
           ),
           child: const PageHeader(
             eyebrow: 'Personal analytics',
-            title: 'My activity',
-            subtitle: 'Where your time goes — by day, month and app.',
+            title: AppStrings.myActivity,
+            subtitle: AppStrings.whereYourTimeGoesByDayMonthAndApp,
           ),
         ),
       ),

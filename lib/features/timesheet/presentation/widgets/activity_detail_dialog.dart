@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../tracking/data/models/app_activity.dart';
 import '../../../../theme/macos_theme.dart';
 import '../../../../core/utils/logger.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Simplified dialog showing activity details for a time period
 /// ENHANCED: Auto-refreshes for active sessions to show real-time durations
@@ -579,7 +581,7 @@ class _ActivityDetailDialogState extends State<ActivityDetailDialog> {
                                 vertical: 12,
                               ),
                             ),
-                            child: const Text('Close'),
+                            child: const Text(AppStrings.close),
                           ),
                           const SizedBox(height: 4),
                           Text(

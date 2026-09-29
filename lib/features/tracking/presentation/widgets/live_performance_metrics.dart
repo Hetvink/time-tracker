@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/attendance_provider.dart';
 import '../../data/models/attendance_state.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class LivePerformanceMetrics extends StatelessWidget {
   final AttendanceProvider? provider;
@@ -48,7 +50,7 @@ class LivePerformanceMetrics extends StatelessWidget {
                       icon: Icons.coffee_outlined,
                       iconColor: const Color(0xFFFF9F0A),
                       iconBgColor: const Color(0xFF3E2D12),
-                      label: 'Break Time (Today)',
+                      label: AppStrings.breakTimeToday,
                       value: _formatDurationShort(
                         activeProvider.todayClosedBreakDuration,
                       ),
@@ -58,7 +60,7 @@ class LivePerformanceMetrics extends StatelessWidget {
                       icon: Icons.verified_user_outlined,
                       iconColor: const Color(0xFF0A84FF),
                       iconBgColor: const Color(0xFF002B5C),
-                      label: 'Total Hours (All-time)',
+                      label: AppStrings.totalHoursAllTime,
                       value: _formatDurationShort(
                         activeProvider.allTimeClosedDuration + liveWorkDuration,
                       ),
@@ -68,7 +70,7 @@ class LivePerformanceMetrics extends StatelessWidget {
                       icon: Icons.access_time_outlined,
                       iconColor: const Color(0xFFBF5AF2), // System Purple
                       iconBgColor: const Color(0xFF3F1D52),
-                      label: 'Total Sessions',
+                      label: AppStrings.totalSessions,
                       value: '${activeProvider.totalSessionsCount}',
                     ),
                     _buildMetricCard(
@@ -76,7 +78,7 @@ class LivePerformanceMetrics extends StatelessWidget {
                       icon: Icons.calendar_month_outlined,
                       iconColor: const Color(0xFF34C759), // System Green
                       iconBgColor: const Color(0xFF0F3D17),
-                      label: 'Total Hours (This Month)',
+                      label: AppStrings.totalHoursThisMonth,
                       value: _formatDurationShort(
                         activeProvider.monthClosedDuration + liveWorkDuration,
                       ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/features/company/presentation/providers/company_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class CompanyTile extends StatelessWidget {
   const CompanyTile({super.key});
@@ -48,7 +50,7 @@ class CompanyTile extends StatelessWidget {
                   showSnack(context, error, error: true);
                 }
               },
-              child: const Text('Leave'),
+              child: const Text(AppStrings.leave),
             ),
     );
   }

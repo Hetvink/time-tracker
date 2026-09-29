@@ -6,6 +6,8 @@ import '../providers/attendance_provider.dart';
 import '../../../timesheet/presentation/widgets/activity_timesheet_view.dart';
 import '../../../timesheet/presentation/widgets/day_timeline_view.dart';
 import '../../../../theme/macos_theme.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// SIMPLIFIED: Activity Tracking Page
 /// Shows monthly calendar with activity timeline
@@ -113,7 +115,7 @@ class _ActivityTrackingPageState extends State<ActivityTrackingPage> {
                         ElevatedButton.icon(
                           onPressed: () => _showDayTimeline(context),
                           icon: const Icon(Icons.view_timeline, size: 18),
-                          label: const Text('Day View'),
+                          label: const Text(AppStrings.dayView),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: MacOSTheme.systemBlue,
                             foregroundColor: Colors.white,
@@ -131,7 +133,7 @@ class _ActivityTrackingPageState extends State<ActivityTrackingPage> {
                             _startRefreshTimer();
                           },
                           icon: const Icon(Icons.refresh_rounded, size: 20),
-                          tooltip: 'Refresh',
+                          tooltip: AppStrings.refresh,
                         ),
                       ],
                     ),

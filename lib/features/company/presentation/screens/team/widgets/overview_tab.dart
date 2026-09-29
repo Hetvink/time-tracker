@@ -7,6 +7,8 @@ import '../../../../data/models/team_member.dart';
 import 'attention.dart';
 import 'leaderboard.dart';
 import 'live_board.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class OverviewTab extends StatelessWidget {
   final List<TeamMember> members;
@@ -47,12 +49,12 @@ class OverviewTab extends StatelessWidget {
     if (members.isEmpty) {
       return EmptyState(
         icon: Icons.group_add_rounded,
-        title: 'No members yet',
+        title: AppStrings.noMembersYet,
         message: 'Invite your team to start tracking time together.',
         action: onInvite == null
             ? null
             : GradientButton(
-                label: 'Invite members',
+                label: AppStrings.inviteMembers,
                 icon: Icons.person_add_alt_1_rounded,
                 onPressed: onInvite,
               ),
@@ -67,7 +69,7 @@ class OverviewTab extends StatelessWidget {
         spacing: 14,
         children: [
           KpiCard(
-            label: 'Members',
+            label: AppStrings.members2,
             numeric: members.length.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.groups_rounded,
@@ -77,7 +79,7 @@ class OverviewTab extends StatelessWidget {
                 : '$deactivated deactivated',
           ),
           KpiCard(
-            label: 'Working now',
+            label: AppStrings.workingNow,
             numeric: working.length.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.bolt_rounded,
@@ -86,14 +88,14 @@ class OverviewTab extends StatelessWidget {
                 '${(working.length / (active.isEmpty ? 1 : active.length) * 100).round()}% of team',
           ),
           KpiCard(
-            label: 'On break',
+            label: AppStrings.onBreak,
             numeric: onBreak.length.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.coffee_rounded,
             color: AppColors.warning,
           ),
           KpiCard.duration(
-            label: 'Team today',
+            label: AppStrings.teamToday,
             duration: today,
             icon: Icons.today_rounded,
             color: AppColors.cyan,
@@ -101,13 +103,13 @@ class OverviewTab extends StatelessWidget {
                 'Avg ${formatHm(today ~/ (active.isEmpty ? 1 : active.length))}/person',
           ),
           KpiCard.duration(
-            label: 'Team this week',
+            label: AppStrings.teamThisWeek,
             duration: week,
             icon: Icons.date_range_rounded,
             color: AppColors.violet,
           ),
           KpiCard.duration(
-            label: 'Team this month',
+            label: AppStrings.teamThisMonth,
             duration: month,
             icon: Icons.calendar_month_rounded,
             color: AppColors.pink,
@@ -117,8 +119,8 @@ class OverviewTab extends StatelessWidget {
       SplitPanes(
         primary: LiveBoard(working: working, onBreak: onBreak, onOpen: onOpen),
         secondary: AppCard(
-          title: 'Status mix',
-          subtitle: 'Right now',
+          title: AppStrings.statusMix,
+          subtitle: AppStrings.rightNow,
           icon: Icons.donut_large_rounded,
           child: Center(
             child: Column(

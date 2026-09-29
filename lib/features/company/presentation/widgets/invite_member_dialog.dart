@@ -7,6 +7,8 @@ import '../../../../theme/macos_theme.dart';
 import '../../../auth/data/models/user_role.dart';
 import '../../data/models/company_invitation.dart';
 import '../../data/repository/company_repository.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Invite one or more people by e-mail. Returns true if anything was sent.
 Future<bool> showInviteMemberDialog(
@@ -132,7 +134,7 @@ class _InviteMemberDialog extends StatelessWidget {
                 onPressed: c.isSending
                     ? null
                     : () => Navigator.pop(context, false),
-                child: const Text('Cancel'),
+                child: const Text(AppStrings.cancel),
               ),
               FilledButton.icon(
                 onPressed: c.isSending ? null : c.send,
@@ -143,7 +145,7 @@ class _InviteMemberDialog extends StatelessWidget {
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
                     : const Icon(Icons.send_rounded, size: 18),
-                label: const Text('Send invites'),
+                label: const Text(AppStrings.sendInvites),
               ),
             ]
           : [
@@ -152,7 +154,7 @@ class _InviteMemberDialog extends StatelessWidget {
                   context,
                   outcomes.any((o) => o.result != null),
                 ),
-                child: const Text('Done'),
+                child: const Text(AppStrings.done),
               ),
             ],
     );
@@ -171,7 +173,7 @@ class _InviteMemberDialog extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: 'E-mail addresses',
-            hintText: 'alex@company.com, sam@company.com',
+            hintText: AppStrings.alexCompanyComSamCompanyCom,
             helperText: 'Separate several addresses with commas or new lines.',
             errorText: c.inputError,
             border: const OutlineInputBorder(),
@@ -182,12 +184,12 @@ class _InviteMemberDialog extends StatelessWidget {
           segments: const [
             ButtonSegment(
               value: UserRole.member,
-              label: Text('Member'),
+              label: Text(AppStrings.member),
               icon: Icon(Icons.person_outline_rounded),
             ),
             ButtonSegment(
               value: UserRole.admin,
-              label: Text('Admin'),
+              label: Text(AppStrings.admin),
               icon: Icon(Icons.admin_panel_settings_outlined),
             ),
           ],
@@ -270,7 +272,7 @@ class _InviteMemberDialog extends StatelessWidget {
                       }
                     },
                     icon: const Icon(Icons.copy_rounded, size: 16),
-                    label: const Text('Copy invite link'),
+                    label: const Text(AppStrings.copyInviteLink),
                   ),
                 ),
             ],

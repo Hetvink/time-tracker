@@ -12,6 +12,8 @@ import 'request_card.dart';
 import 'companies.dart';
 
 import '../platform_admin_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class PlatformAdminView extends StatefulWidget {
   const PlatformAdminView({super.key});
@@ -73,12 +75,12 @@ class PlatformAdminViewState extends State<PlatformAdminView> {
         actions: [
           OutlinedButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
+            child: const Text(AppStrings.cancel),
           ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
             onPressed: () => Navigator.pop(ctx, controller.text.trim()),
-            child: const Text('Reject'),
+            child: const Text(AppStrings.reject),
           ),
         ],
       ),
@@ -155,7 +157,7 @@ class PlatformAdminViewState extends State<PlatformAdminView> {
                       Icons.pause_circle_outline_rounded,
                       size: 18,
                     ),
-                    label: const Text('Suspend'),
+                    label: const Text(AppStrings.suspend),
                   ),
                 if (c.company.status == CompanyStatus.suspended)
                   OutlinedButton.icon(
@@ -167,7 +169,7 @@ class PlatformAdminViewState extends State<PlatformAdminView> {
                       Icons.play_circle_outline_rounded,
                       size: 18,
                     ),
-                    label: const Text('Reactivate'),
+                    label: const Text(AppStrings.reactivate),
                   ),
               ],
             ),
@@ -226,18 +228,18 @@ class PlatformAdminViewState extends State<PlatformAdminView> {
             padding: EdgeInsets.fromLTRB(gutter, gutter, gutter, 8),
             child: PageHeader(
               eyebrow: 'Platform admin',
-              title: 'Platform console',
-              subtitle: 'Every company and user on Time Trak',
+              title: AppStrings.platformConsole,
+              subtitle: AppStrings.everyCompanyAndUserOnTimeTrak,
               actions: [
                 IconButton(
-                  tooltip: 'Refresh',
+                  tooltip: AppStrings.refresh,
                   onPressed: admin.isLoading ? null : _load,
                   icon: const Icon(Icons.refresh_rounded),
                 ),
                 OutlinedButton.icon(
                   onPressed: _companies.isEmpty ? null : _export,
                   icon: const Icon(Icons.download_rounded, size: 18),
-                  label: const Text('Export'),
+                  label: const Text(AppStrings.export),
                 ),
               ],
             ),
@@ -254,7 +256,7 @@ class PlatformAdminViewState extends State<PlatformAdminView> {
                     isLabelVisible: pending.isNotEmpty,
                     label: Text('${pending.length}'),
                     offset: const Offset(14, -6),
-                    child: const Text('Requests'),
+                    child: const Text(AppStrings.requests),
                   ),
                 ),
                 Tab(text: 'Companies (${_companies.length})'),
@@ -267,7 +269,7 @@ class PlatformAdminViewState extends State<PlatformAdminView> {
                 ? const Center(child: CircularProgressIndicator())
                 : admin.error != null && admin.stats == null
                 ? ErrorState(
-                    title: 'Could not load the platform',
+                    title: AppStrings.couldNotLoadThePlatform,
                     error: admin.error,
                     onRetry: _load,
                   )

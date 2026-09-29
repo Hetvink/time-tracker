@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../../../admin/presentation/screens/member_profile_page.dart';
 import '../../../../data/models/team_member.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class MemberRow extends StatefulWidget {
   final TeamMember member;
@@ -82,7 +84,7 @@ class MemberRowState extends State<MemberRow> {
                               if (m.isAdmin) ...[
                                 const SizedBox(width: 6),
                                 const StatusPill(
-                                  label: 'Admin',
+                                  label: AppStrings.admin,
                                   color: AppColors.warning,
                                 ),
                               ],
@@ -229,7 +231,7 @@ class MemberCard extends StatelessWidget {
                 StatusPill(label: status, color: color, dot: true),
                 if (m.isAdmin)
                   const StatusPill(
-                    label: 'Admin',
+                    label: AppStrings.admin,
                     color: AppColors.warning,
                     icon: Icons.shield_rounded,
                   ),

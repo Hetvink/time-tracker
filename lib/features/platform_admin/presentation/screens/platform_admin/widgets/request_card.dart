@@ -5,6 +5,8 @@ import 'package:time_trak/features/company/data/models/company.dart';
 import 'company_avatar.dart';
 
 import '../platform_admin_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class RequestCard extends StatelessWidget {
   final CompanyOverview overview;
@@ -103,10 +105,10 @@ class RequestCard extends StatelessWidget {
                           foregroundColor: AppColors.danger,
                         ),
                         icon: const Icon(Icons.close_rounded, size: 18),
-                        label: const Text('Reject'),
+                        label: const Text(AppStrings.reject),
                       ),
                       GradientButton(
-                        label: 'Approve',
+                        label: AppStrings.approve,
                         icon: Icons.check_rounded,
                         onPressed: onApprove,
                       ),
@@ -121,7 +123,7 @@ class RequestCard extends StatelessWidget {
                           Icons.delete_outline_rounded,
                           size: 18,
                         ),
-                        label: const Text('Delete request'),
+                        label: const Text(AppStrings.deleteRequest),
                       ),
                     ],
             ),

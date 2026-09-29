@@ -41,6 +41,8 @@ import '../features/settings/presentation/providers/settings_provider.dart';
 import '../features/settings/presentation/screens/settings/settings_page.dart';
 import '../routes/app_shell.dart';
 import '../routes/navigation_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// The reporting portal shared by the web and mobile builds: personal
 /// dashboard, activity and timesheets, the company Team area, and the
@@ -155,7 +157,7 @@ class PortalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Time Trak',
+      title: AppStrings.timeTrak,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
@@ -233,7 +235,7 @@ class _OAuthErrorScreen extends StatelessWidget {
       message: message,
       actions: [
         GradientButton(
-          label: 'Back to sign in',
+          label: AppStrings.backToSignIn,
           icon: Icons.arrow_back_rounded,
           onPressed: () {
             authProvider.clearError();
@@ -281,20 +283,20 @@ class _PortalShell extends StatelessWidget {
         index: NavIndex.dashboard,
         icon: Icons.space_dashboard_outlined,
         selectedIcon: Icons.space_dashboard_rounded,
-        label: 'Dashboard',
+        label: AppStrings.dashboard,
       ),
       if (hasCompany || company.isSuperAdmin) ...[
         const ShellDestination(
           index: NavIndex.activity,
           icon: Icons.insights_outlined,
           selectedIcon: Icons.insights_rounded,
-          label: 'My activity',
+          label: AppStrings.myActivity,
         ),
         const ShellDestination(
           index: NavIndex.timesheet,
           icon: Icons.calendar_month_outlined,
           selectedIcon: Icons.calendar_month_rounded,
-          label: 'Timesheet',
+          label: AppStrings.timesheet,
         ),
       ],
       if (company.isCompanyAdmin)
@@ -302,7 +304,7 @@ class _PortalShell extends StatelessWidget {
           index: NavIndex.team,
           icon: Icons.groups_outlined,
           selectedIcon: Icons.groups_rounded,
-          label: 'Team',
+          label: AppStrings.team,
           section: 'Admin',
         ),
       if (company.isSuperAdmin)
@@ -310,7 +312,7 @@ class _PortalShell extends StatelessWidget {
           index: NavIndex.platformAdmin,
           icon: Icons.admin_panel_settings_outlined,
           selectedIcon: Icons.admin_panel_settings_rounded,
-          label: 'Platform',
+          label: AppStrings.platform,
           section: 'Admin',
           primary: !company.isCompanyAdmin,
           badge: pendingCompanies,
@@ -319,7 +321,7 @@ class _PortalShell extends StatelessWidget {
         index: NavIndex.settings,
         icon: Icons.settings_outlined,
         selectedIcon: Icons.settings_rounded,
-        label: 'Settings',
+        label: AppStrings.settings,
         section: 'Account',
         primary: false,
       ),

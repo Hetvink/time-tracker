@@ -12,6 +12,8 @@ import '../../../../data/models/team_member.dart';
 import '../../../providers/company_provider.dart';
 import '../../../providers/team_controller.dart';
 import '../../../widgets/invite_member_dialog.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class TeamActions {
   final BuildContext context;
@@ -153,7 +155,7 @@ class TeamActions {
   Widget memberMenu(TeamMember m) {
     final actions = actionsFor(m);
     return PopupMenuButton<int>(
-      tooltip: 'Actions',
+      tooltip: AppStrings.actions,
       icon: const Icon(Icons.more_horiz_rounded),
       onSelected: (i) => i < 0 ? openMember(m) : actions[i].$3(),
       itemBuilder: (_) => [
@@ -163,7 +165,7 @@ class TeamActions {
             children: [
               Icon(Icons.insights_rounded, size: 18),
               SizedBox(width: 12),
-              Text('View activity'),
+              Text(AppStrings.viewActivity),
             ],
           ),
         ),

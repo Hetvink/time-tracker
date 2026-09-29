@@ -3,6 +3,8 @@ import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/features/company/data/models/company.dart';
 
 import 'request_card.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class Requests extends StatelessWidget {
   final List<CompanyOverview> pending;
@@ -32,7 +34,7 @@ class Requests extends StatelessWidget {
             EmptyState(
               icon: Icons.task_alt_rounded,
               color: AppColors.success,
-              title: 'Inbox zero',
+              title: AppStrings.inboxZero,
               message: 'No company registrations are waiting for review.',
             ),
           ],

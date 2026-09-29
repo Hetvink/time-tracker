@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/features/insights/data/insights.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class KpiRow extends StatelessWidget {
   final Insights? insights;
@@ -63,7 +65,7 @@ class KpiRow extends StatelessWidget {
       spacing: 14,
       children: [
         KpiCard.duration(
-          label: 'This week',
+          label: AppStrings.thisWeek,
           duration: week,
           icon: Icons.date_range_rounded,
           color: AppColors.primary,
@@ -81,7 +83,7 @@ class KpiRow extends StatelessWidget {
           loading: loading,
         ),
         KpiCard.duration(
-          label: 'Daily average',
+          label: AppStrings.dailyAverage,
           duration: monthDays == 0 ? Duration.zero : month ~/ monthDays,
           icon: Icons.speed_rounded,
           color: AppColors.violet,
@@ -89,7 +91,7 @@ class KpiRow extends StatelessWidget {
           loading: loading,
         ),
         KpiCard(
-          label: 'Sessions this month',
+          label: AppStrings.sessionsThisMonth,
           numeric:
               (i?.sessions.where((s) => !s.start.isBefore(monthStart)).length ??
                       0)

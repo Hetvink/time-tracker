@@ -6,6 +6,8 @@ import '../../../../core/widgets/ui_kit.dart';
 import '../../../settings/presentation/providers/preferences_service.dart';
 import '../../data/models/attendance_state.dart';
 import '../providers/attendance_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Desktop tracker home: live session control, today's progress and totals.
 class DesktopDashboardPage extends StatelessWidget {
@@ -17,11 +19,11 @@ class DesktopDashboardPage extends StatelessWidget {
     return AppPage(
       eyebrow: DateFormat('EEEE, d MMMM').format(DateTime.now()),
       title: '${greeting()} 👋',
-      subtitle: 'Your time is tracked automatically while you work.',
+      subtitle: AppStrings.yourTimeIsTrackedAutomaticallyWhileYouWork,
       onRefresh: provider.refresh,
       actions: [
         IconButton(
-          tooltip: 'Refresh',
+          tooltip: AppStrings.refresh,
           onPressed: provider.refresh,
           icon: const Icon(Icons.refresh_rounded),
         ),
@@ -38,13 +40,13 @@ class DesktopDashboardPage extends StatelessWidget {
           spacing: 14,
           children: [
             KpiCard.duration(
-              label: 'Today',
+              label: AppStrings.today,
               duration: provider.todayClosedDuration,
               icon: Icons.today_rounded,
               color: AppColors.primary,
             ),
             KpiCard.duration(
-              label: 'Breaks today',
+              label: AppStrings.breaksToday,
               duration: provider.todayClosedBreakDuration,
               icon: Icons.coffee_rounded,
               color: AppColors.warning,
@@ -56,7 +58,7 @@ class DesktopDashboardPage extends StatelessWidget {
               color: AppColors.cyan,
             ),
             KpiCard(
-              label: 'Sessions all time',
+              label: AppStrings.sessionsAllTime,
               numeric: provider.totalSessionsCount.toDouble(),
               format: (v) => '${v.round()}',
               icon: Icons.layers_rounded,
@@ -313,7 +315,7 @@ class _TodayPanel extends StatelessWidget {
           const SizedBox(height: 18),
           InfoRow(
             icon: Icons.hourglass_bottom_rounded,
-            label: 'Remaining',
+            label: AppStrings.remaining,
             value: remaining > Duration.zero
                 ? formatHm(remaining)
                 : 'Goal reached 🎉',
@@ -321,12 +323,12 @@ class _TodayPanel extends StatelessWidget {
           ),
           InfoRow(
             icon: Icons.coffee_rounded,
-            label: 'Breaks',
+            label: AppStrings.breaks,
             value: formatHm(provider.todayClosedBreakDuration),
           ),
           InfoRow(
             icon: Icons.calendar_month_rounded,
-            label: 'This month',
+            label: AppStrings.thisMonth,
             value: formatHm(provider.monthClosedDuration),
           ),
         ],

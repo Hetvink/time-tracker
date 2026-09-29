@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../../data/repository/admin_repository.dart';
 import '../providers/admin_dashboard_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class UserDayView extends StatelessWidget {
   final String userId;
@@ -50,7 +52,7 @@ class UserDayView extends StatelessWidget {
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () => adminProvider.refreshData(),
-                      child: const Text('Retry'),
+                      child: const Text(AppStrings.retry),
                     ),
                   ],
                 ),

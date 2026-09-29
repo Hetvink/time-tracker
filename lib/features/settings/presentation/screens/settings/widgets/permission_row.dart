@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class PermissionRow extends StatelessWidget {
   final String title;
@@ -57,12 +59,12 @@ class PermissionRow extends StatelessWidget {
                 FilledButton.icon(
                   onPressed: onOpen,
                   icon: const Icon(Icons.settings_rounded, size: 16),
-                  label: const Text('Open System Settings'),
+                  label: const Text(AppStrings.openSystemSettings),
                 ),
                 TextButton.icon(
                   onPressed: onCheck,
                   icon: const Icon(Icons.refresh_rounded, size: 16),
-                  label: const Text('Check again'),
+                  label: const Text(AppStrings.checkAgain),
                 ),
               ],
             ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../tracking/data/models/work_session.dart';
 import '../../../tracking/data/models/app_activity.dart';
 import '../../../../theme/macos_theme.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Timeline widget showing work sessions with 15-minute segments in vertical layout
 class SessionTimelineWidget extends StatelessWidget {
@@ -488,7 +490,7 @@ class SegmentDetailsDialog extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('15-Minute Segment'),
+          const Text(AppStrings.s_15MinuteSegment),
           const SizedBox(height: 4),
           Text(
             '${_formatTime(segment.startTime)} - ${_formatTime(segment.endTime)}',
@@ -520,7 +522,7 @@ class SegmentDetailsDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Close'),
+          child: const Text(AppStrings.close),
         ),
       ],
     );

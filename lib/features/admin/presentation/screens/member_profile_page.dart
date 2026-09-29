@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/widgets/ui_kit.dart';
 import '../../../company/data/models/team_member.dart';
 import '../../../insights/presentation/insight_views.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Admin view of one member: profile header + full analytics.
 class MemberProfilePage extends StatelessWidget {
@@ -45,7 +47,7 @@ class MemberProfilePage extends StatelessWidget {
           actions: [
             if (actions.isNotEmpty)
               PopupMenuButton<int>(
-                tooltip: 'Manage member',
+                tooltip: AppStrings.manageMember,
                 icon: const Icon(Icons.more_vert_rounded),
                 onSelected: (i) => actions[i].$3(),
                 itemBuilder: (_) => [
@@ -175,17 +177,17 @@ class _ProfileHeader extends StatelessWidget {
       runSpacing: 12,
       children: [
         _MiniStat(
-          label: 'Today',
+          label: AppStrings.today,
           value: formatHm(m.today),
           color: AppColors.primary,
         ),
         _MiniStat(
-          label: 'This week',
+          label: AppStrings.thisWeek,
           value: formatHm(m.week),
           color: AppColors.cyan,
         ),
         _MiniStat(
-          label: 'This month',
+          label: AppStrings.thisMonth,
           value: formatHm(m.month),
           color: AppColors.violet,
         ),

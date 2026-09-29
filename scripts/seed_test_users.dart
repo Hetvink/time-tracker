@@ -22,17 +22,24 @@ Future<void> main() async {
     Future<String> getOrCreateUser(String email) async {
       print('Setting up $email...');
       try {
-        final res = await supabase.auth.admin.createUser(AdminUserAttributes(
-          email: email,
-          password: 'password123',
-          emailConfirm: true,
-        ));
+        final res = await supabase.auth.admin.createUser(
+          AdminUserAttributes(
+            email: email,
+            password: 'password123',
+            emailConfirm: true,
+          ),
+        );
         return res.user!.id;
       } catch (e) {
-        if (e.toString().contains('already been registered') || e.toString().contains('email_exists')) {
+        if (e.toString().contains('already been registered') ||
+            e.toString().contains('email_exists')) {
           print('User $email already exists, fetching ID...');
           // Fetch from public.users table where trigger should have created them
-          final existing = await supabase.from('users').select('id').eq('email', email).maybeSingle();
+          final existing = await supabase
+              .from('users')
+              .select('id')
+              .eq('email', email)
+              .maybeSingle();
           if (existing != null) {
             return existing['id'] as String;
           }
@@ -44,8 +51,10 @@ Future<void> main() async {
 
     // 1. Create Platform Admin
     await getOrCreateUser('admin@test.com');
-    await supabase.from('platform_admin_emails').upsert({'email': 'admin@test.com'});
-    
+    await supabase.from('platform_admin_emails').upsert({
+      'email': 'admin@test.com',
+    });
+
     // 2. Create Company Admin
     final companyAdminId = await getOrCreateUser('company@test.com');
 
@@ -54,34 +63,42 @@ Future<void> main() async {
 
     // Set up the company (Approved)
     print('Setting up company and roles...');
-    
+
     // Check if company exists first
-    final existingCompany = await supabase.from('companies').select('id').eq('slug', 'test-company-llc').maybeSingle();
-    
+    final existingCompany = await supabase
+        .from('companies')
+        .select('id')
+        .eq('slug', 'test-company-llc')
+        .maybeSingle();
+
     String companyId;
     if (existingCompany != null) {
       companyId = existingCompany['id'] as String;
       print('Company already exists.');
     } else {
-      final companyRes = await supabase.from('companies').insert({
-        'name': 'Test Company LLC',
-        'slug': 'test-company-llc',
-        'status': 'approved',
-      }).select().single();
+      final companyRes = await supabase
+          .from('companies')
+          .insert({
+            'name': 'Test Company LLC',
+            'slug': 'test-company-llc',
+            'status': 'approved',
+          })
+          .select()
+          .single();
       companyId = companyRes['id'];
     }
 
     // Assign Company Admin
-    await supabase.from('users').update({
-      'company_id': companyId,
-      'role': 'admin',
-    }).eq('id', companyAdminId);
+    await supabase
+        .from('users')
+        .update({'company_id': companyId, 'role': 'admin'})
+        .eq('id', companyAdminId);
 
     // Assign Member
-    await supabase.from('users').update({
-      'company_id': companyId,
-      'role': 'member',
-    }).eq('id', memberId);
+    await supabase
+        .from('users')
+        .update({'company_id': companyId, 'role': 'member'})
+        .eq('id', memberId);
 
     print('✅ Success! Test accounts created and linked.');
     print('-----------------------------------------');
@@ -89,10 +106,9 @@ Future<void> main() async {
     print('Company Admin  : company@test.com / password123');
     print('Member         : member@test.com / password123');
     print('-----------------------------------------');
-
   } catch (e) {
     print('❌ Error: $e');
   }
-  
+
   exit(0);
 }

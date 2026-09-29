@@ -11,7 +11,11 @@ class InvitationCard extends StatefulWidget {
   final CompanyInvitation invitation;
   final String? signedInEmail;
 
-  const InvitationCard({required this.invitation, this.signedInEmail});
+  const InvitationCard({
+    super.key,
+    required this.invitation,
+    this.signedInEmail,
+  });
 
   @override
   State<InvitationCard> createState() => InvitationCardState();

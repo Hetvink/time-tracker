@@ -7,7 +7,7 @@ import '../../../providers/company_provider.dart';
 
 class PendingRequestCard extends StatefulWidget {
   final Company request;
-  const PendingRequestCard({required this.request});
+  const PendingRequestCard({super.key, required this.request});
 
   @override
   State<PendingRequestCard> createState() => PendingRequestCardState();
@@ -110,7 +110,7 @@ class PendingRequestCardState extends State<PendingRequestCard> {
 class Steps extends StatelessWidget {
   final int current;
   final List<String> labels;
-  const Steps({required this.current, required this.labels});
+  const Steps({super.key, required this.current, required this.labels});
 
   @override
   Widget build(BuildContext context) {

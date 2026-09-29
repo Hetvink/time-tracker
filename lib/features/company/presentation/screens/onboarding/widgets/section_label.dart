@@ -4,7 +4,7 @@ import '../../../../../../core/widgets/ui_kit.dart';
 
 class SectionLabel extends StatelessWidget {
   final String text;
-  const SectionLabel(this.text);
+  const SectionLabel(this.text, {super.key});
 
   @override
   Widget build(BuildContext context) {

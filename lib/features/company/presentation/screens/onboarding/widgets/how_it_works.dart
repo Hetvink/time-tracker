@@ -5,7 +5,7 @@ import '../../../../../../core/constants/app_env.dart';
 import '../../../../../../core/widgets/ui_kit.dart';
 
 class HowItWorks extends StatelessWidget {
-  const HowItWorks();
+  const HowItWorks({super.key});
 
   @override
   Widget build(BuildContext context) {

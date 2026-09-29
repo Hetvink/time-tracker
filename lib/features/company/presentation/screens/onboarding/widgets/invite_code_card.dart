@@ -5,7 +5,7 @@ import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../providers/company_provider.dart';
 
 class InviteCodeCard extends StatefulWidget {
-  const InviteCodeCard();
+  const InviteCodeCard({super.key});
 
   @override
   State<InviteCodeCard> createState() => InviteCodeCardState();

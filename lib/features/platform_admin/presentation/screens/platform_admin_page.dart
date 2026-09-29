@@ -5,7 +5,7 @@ import '../../../../core/utils/csv_export.dart';
 import '../../../../core/widgets/charts.dart';
 import '../../../../core/widgets/ui_kit.dart';
 import '../../../company/data/models/company.dart';
-import '../../../company/presentation/screens/team_page.dart';
+import '../../../company/presentation/screens/team/team_page.dart';
 import '../platform_admin_controller.dart';
 
 enum _Sort { newest, name, members, working }

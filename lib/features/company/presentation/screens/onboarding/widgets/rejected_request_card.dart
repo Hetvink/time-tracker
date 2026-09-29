@@ -4,7 +4,7 @@ import '../../../../data/models/company.dart';
 
 class RejectedRequestCard extends StatelessWidget {
   final Company request;
-  const RejectedRequestCard({required this.request});
+  const RejectedRequestCard({super.key, required this.request});
 
   @override
   Widget build(BuildContext context) {

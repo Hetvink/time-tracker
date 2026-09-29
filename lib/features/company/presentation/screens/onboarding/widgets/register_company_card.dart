@@ -12,6 +12,7 @@ class RegisterCompanyCard extends StatelessWidget {
   final VoidCallback onExpand;
 
   const RegisterCompanyCard({
+    super.key,
     required this.expanded,
     required this.initial,
     required this.onExpand,

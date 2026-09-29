@@ -6,6 +6,8 @@ import 'company_avatar.dart';
 import 'stat.dart';
 
 import '../platform_admin_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class CompanyRow extends StatelessWidget {
   final CompanyOverview overview;
@@ -49,11 +51,11 @@ class CompanyRow extends StatelessWidget {
         }
       },
       itemBuilder: (_) => [
-        const PopupMenuItem(value: 'open', child: Text('Open')),
+        const PopupMenuItem(value: 'open', child: Text(AppStrings.open)),
         if (c.status == CompanyStatus.approved)
-          const PopupMenuItem(value: 'suspend', child: Text('Suspend')),
+          const PopupMenuItem(value: 'suspend', child: Text(AppStrings.suspend)),
         if (c.status == CompanyStatus.suspended)
-          const PopupMenuItem(value: 'reactivate', child: Text('Reactivate')),
+          const PopupMenuItem(value: 'reactivate', child: Text(AppStrings.reactivate)),
         const PopupMenuItem(
           value: 'delete',
           child: Text('Delete', style: TextStyle(color: AppColors.danger)),
@@ -68,17 +70,17 @@ class CompanyRow extends StatelessWidget {
         Stat(
           icon: Icons.people_alt_rounded,
           value: '${overview.memberCount}',
-          label: 'members',
+          label: AppStrings.members,
         ),
         Stat(
           icon: Icons.shield_rounded,
           value: '${overview.adminCount}',
-          label: 'admins',
+          label: AppStrings.admins,
         ),
         Stat(
           icon: Icons.bolt_rounded,
           value: '${overview.workingNow}',
-          label: 'working',
+          label: AppStrings.working2,
           color: overview.workingNow > 0 ? AppColors.success : null,
         ),
       ],
@@ -118,8 +120,8 @@ class CompanyRow extends StatelessWidget {
 
     final pendingActions = c.status == CompanyStatus.pending
         ? [
-            TextButton(onPressed: onReject, child: const Text('Reject')),
-            FilledButton(onPressed: onApprove, child: const Text('Approve')),
+            TextButton(onPressed: onReject, child: const Text(AppStrings.reject)),
+            FilledButton(onPressed: onApprove, child: const Text(AppStrings.approve)),
           ]
         : const <Widget>[];
 

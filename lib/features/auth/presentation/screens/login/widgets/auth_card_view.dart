@@ -6,6 +6,8 @@ import 'package:time_trak/features/auth/presentation/providers/login_form_contro
 
 import 'banner.dart';
 import 'google_mark.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class AuthCardView extends StatelessWidget {
   const AuthCardView({super.key});
@@ -20,7 +22,7 @@ class AuthCardView extends StatelessWidget {
           color: AppColors.primary,
           size: 32,
         ),
-        title: const Text('Reset your password'),
+        title: const Text(AppStrings.resetYourPassword),
         content: SizedBox(
           width: 380,
           child: Column(
@@ -47,11 +49,11 @@ class AuthCardView extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
+            child: const Text(AppStrings.cancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(ctx, controller.text.trim()),
-            child: const Text('Send link'),
+            child: const Text(AppStrings.sendLink),
           ),
         ],
       ),
@@ -215,7 +217,7 @@ class AuthCardView extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: c.isBusy ? null : () => _forgot(context, c),
-                      child: const Text('Forgot password?'),
+                      child: const Text(AppStrings.forgotPassword),
                     ),
                   )
                 else

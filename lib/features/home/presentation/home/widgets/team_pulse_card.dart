@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/routes/navigation_provider.dart';
 import 'package:time_trak/features/company/data/models/team_member.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class TeamPulseCard extends StatelessWidget {
   /// Null while loading.
@@ -22,7 +24,7 @@ class TeamPulseCard extends StatelessWidget {
         final top = [...members]..sort((a, b) => b.today.compareTo(a.today));
         final teamToday = members.fold(Duration.zero, (a, m) => a + m.today);
         return AppCard(
-          title: 'Team pulse',
+          title: AppStrings.teamPulse,
           subtitle: loaded
               ? '${working.length} working · $onBreak on break · ${formatHm(teamToday)} today'
               : 'Loading team…',
@@ -32,7 +34,7 @@ class TeamPulseCard extends StatelessWidget {
               onPressed: () =>
                   context.read<NavigationProvider>().selectIndex(NavIndex.team),
               icon: const Icon(Icons.arrow_forward_rounded, size: 16),
-              label: const Text('Open team'),
+              label: const Text(AppStrings.openTeam),
             ),
           ],
           child: !loaded

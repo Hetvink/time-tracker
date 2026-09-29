@@ -4,6 +4,8 @@ import '../providers/attendance_provider.dart';
 import 'package:time_trak/features/timesheet/data/models/daily_timesheet.dart';
 import '../../../timesheet/presentation/screens/full_history_page.dart';
 import '../../../timesheet/presentation/widgets/daily_timesheet_table.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class DailySummaryList extends StatelessWidget {
   /// When this key changes, the list will re-fetch data from the provider.
@@ -92,7 +94,7 @@ class DailySummaryList extends StatelessWidget {
                               ),
                             );
                           },
-                          child: const Text('View All'),
+                          child: const Text(AppStrings.viewAll),
                         ),
                       ],
                     ),

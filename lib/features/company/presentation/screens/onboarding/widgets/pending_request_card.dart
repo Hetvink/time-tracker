@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../../data/models/company.dart';
 import '../../../providers/company_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class PendingRequestCard extends StatefulWidget {
   final Company request;
@@ -26,7 +28,7 @@ class PendingRequestCardState extends State<PendingRequestCard> {
   Future<void> _cancel() async {
     final ok = await confirmAction(
       context,
-      title: 'Cancel request?',
+      title: AppStrings.cancelRequest2,
       message:
           'Your registration for ${widget.request.name} will be withdrawn.',
       confirmLabel: 'Cancel request',
@@ -74,7 +76,7 @@ class PendingRequestCardState extends State<PendingRequestCard> {
                 ),
               ),
               const StatusPill(
-                label: 'Pending review',
+                label: AppStrings.pendingReview,
                 color: AppColors.warning,
                 dot: true,
               ),
@@ -98,7 +100,7 @@ class PendingRequestCardState extends State<PendingRequestCard> {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: _busy ? null : _cancel,
-              child: const Text('Cancel request'),
+              child: const Text(AppStrings.cancelRequest),
             ),
           ),
         ],

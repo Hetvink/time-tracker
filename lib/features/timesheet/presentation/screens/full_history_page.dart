@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../../tracking/presentation/providers/attendance_provider.dart';
 import '../providers/history_page_provider.dart';
 import '../widgets/daily_timesheet_table.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class FullHistoryPage extends StatelessWidget {
   const FullHistoryPage({super.key});
@@ -15,7 +17,7 @@ class FullHistoryPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: const Color(0xFF1E1E1E),
         appBar: AppBar(
-          title: const Text('Attendance History'),
+          title: const Text(AppStrings.attendanceHistory),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../../data/models/team_member.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class LiveBoard extends StatelessWidget {
   final List<TeamMember> working;
@@ -23,7 +25,7 @@ class LiveBoard extends StatelessWidget {
   Widget _build(BuildContext context) {
     final all = [...working, ...onBreak];
     return AppCard(
-      title: 'Live board',
+      title: AppStrings.liveBoard,
       subtitle: '${working.length} working · ${onBreak.length} on break',
       icon: Icons.sensors_rounded,
       actions: [
@@ -34,7 +36,7 @@ class LiveBoard extends StatelessWidget {
               height: 200,
               child: EmptyState(
                 icon: Icons.nights_stay_rounded,
-                title: 'Nobody is tracking right now',
+                title: AppStrings.nobodyIsTrackingRightNow,
                 color: AppColors.idle,
               ),
             )

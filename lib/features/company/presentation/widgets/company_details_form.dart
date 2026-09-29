@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/state/submit_controller.dart';
 import '../../data/models/company.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 const _companySizes = ['1-10', '11-50', '51-200', '201-1000', '1000+'];
 
@@ -110,7 +112,7 @@ class _CompanyDetailsFormState extends State<CompanyDetailsForm> {
               controller: _website,
               decoration: const InputDecoration(
                 labelText: 'Website',
-                hintText: 'example.com',
+                hintText: AppStrings.exampleCom,
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.url,

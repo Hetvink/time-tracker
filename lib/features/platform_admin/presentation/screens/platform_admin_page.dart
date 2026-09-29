@@ -7,6 +7,8 @@ import '../../../../core/widgets/ui_kit.dart';
 import '../../../company/data/models/company.dart';
 import '../../../company/presentation/screens/team/team_page.dart';
 import '../platform_admin_controller.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 enum _Sort { newest, name, members, working }
 
@@ -87,12 +89,12 @@ class _PlatformAdminViewState extends State<_PlatformAdminView> {
         actions: [
           OutlinedButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
+            child: const Text(AppStrings.cancel),
           ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
             onPressed: () => Navigator.pop(ctx, controller.text.trim()),
-            child: const Text('Reject'),
+            child: const Text(AppStrings.reject),
           ),
         ],
       ),
@@ -169,7 +171,7 @@ class _PlatformAdminViewState extends State<_PlatformAdminView> {
                       Icons.pause_circle_outline_rounded,
                       size: 18,
                     ),
-                    label: const Text('Suspend'),
+                    label: const Text(AppStrings.suspend),
                   ),
                 if (c.company.status == CompanyStatus.suspended)
                   OutlinedButton.icon(
@@ -181,7 +183,7 @@ class _PlatformAdminViewState extends State<_PlatformAdminView> {
                       Icons.play_circle_outline_rounded,
                       size: 18,
                     ),
-                    label: const Text('Reactivate'),
+                    label: const Text(AppStrings.reactivate),
                   ),
               ],
             ),
@@ -240,18 +242,18 @@ class _PlatformAdminViewState extends State<_PlatformAdminView> {
             padding: EdgeInsets.fromLTRB(gutter, gutter, gutter, 8),
             child: PageHeader(
               eyebrow: 'Platform admin',
-              title: 'Platform console',
-              subtitle: 'Every company and user on Time Trak',
+              title: AppStrings.platformConsole,
+              subtitle: AppStrings.everyCompanyAndUserOnTimeTrak,
               actions: [
                 IconButton(
-                  tooltip: 'Refresh',
+                  tooltip: AppStrings.refresh,
                   onPressed: admin.isLoading ? null : _load,
                   icon: const Icon(Icons.refresh_rounded),
                 ),
                 OutlinedButton.icon(
                   onPressed: _companies.isEmpty ? null : _export,
                   icon: const Icon(Icons.download_rounded, size: 18),
-                  label: const Text('Export'),
+                  label: const Text(AppStrings.export),
                 ),
               ],
             ),
@@ -268,7 +270,7 @@ class _PlatformAdminViewState extends State<_PlatformAdminView> {
                     isLabelVisible: pending.isNotEmpty,
                     label: Text('${pending.length}'),
                     offset: const Offset(14, -6),
-                    child: const Text('Requests'),
+                    child: const Text(AppStrings.requests),
                   ),
                 ),
                 Tab(text: 'Companies (${_companies.length})'),
@@ -281,7 +283,7 @@ class _PlatformAdminViewState extends State<_PlatformAdminView> {
                 ? const Center(child: CircularProgressIndicator())
                 : admin.error != null && admin.stats == null
                 ? ErrorState(
-                    title: 'Could not load the platform',
+                    title: AppStrings.couldNotLoadThePlatform,
                     error: admin.error,
                     onRetry: _load,
                   )
@@ -444,7 +446,7 @@ class _Overview extends StatelessWidget {
         spacing: 14,
         children: [
           KpiCard(
-            label: 'Companies',
+            label: AppStrings.companies,
             numeric: s.companiesTotal.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.domain_rounded,
@@ -452,7 +454,7 @@ class _Overview extends StatelessWidget {
             caption: '${s.companiesApproved} active',
           ),
           KpiCard(
-            label: 'Pending requests',
+            label: AppStrings.pendingRequests,
             numeric: s.companiesPending.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.inbox_rounded,
@@ -460,7 +462,7 @@ class _Overview extends StatelessWidget {
             onTap: onShowRequests,
           ),
           KpiCard(
-            label: 'Users',
+            label: AppStrings.users,
             numeric: s.usersTotal.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.people_alt_rounded,
@@ -468,7 +470,7 @@ class _Overview extends StatelessWidget {
             caption: '${s.usersWithoutCompany} without a company',
           ),
           KpiCard(
-            label: 'Working now',
+            label: AppStrings.workingNow,
             numeric: s.workingNow.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.bolt_rounded,
@@ -482,7 +484,7 @@ class _Overview extends StatelessWidget {
         primaryFlex: 2,
         secondaryFlex: 3,
         primary: AppCard(
-          title: 'Companies by status',
+          title: AppStrings.companiesByStatus,
           icon: Icons.donut_large_rounded,
           child: Center(
             child: Column(
@@ -539,7 +541,7 @@ class _Overview extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 ShareBar(
-                  label: 'Users in a company',
+                  label: AppStrings.usersInACompany,
                   trailing: '$assigned / ${s.usersTotal}',
                   fraction: s.usersTotal == 0 ? 0 : assigned / s.usersTotal,
                   color: AppColors.violet,
@@ -549,15 +551,15 @@ class _Overview extends StatelessWidget {
           ),
         ),
         secondary: AppCard(
-          title: 'Largest companies',
-          subtitle: 'Members per company',
+          title: AppStrings.largestCompanies,
+          subtitle: AppStrings.membersPerCompany,
           icon: Icons.bar_chart_rounded,
           child: bySize.isEmpty
               ? const SizedBox(
                   height: 200,
                   child: EmptyState(
                     icon: Icons.domain_disabled_rounded,
-                    title: 'No active companies',
+                    title: AppStrings.noActiveCompanies,
                   ),
                 )
               : HoursBarChart(
@@ -579,8 +581,8 @@ class _Overview extends StatelessWidget {
       ),
       SplitPanes(
         primary: AppCard(
-          title: 'Working right now',
-          subtitle: 'Live members per company',
+          title: AppStrings.workingRightNow,
+          subtitle: AppStrings.liveMembersPerCompany,
           icon: Icons.sensors_rounded,
           actions: [
             if (s.workingNow > 0) const PulseDot(color: AppColors.success),
@@ -590,7 +592,7 @@ class _Overview extends StatelessWidget {
                   height: 160,
                   child: EmptyState(
                     icon: Icons.nights_stay_rounded,
-                    title: 'Nobody is working right now',
+                    title: AppStrings.nobodyIsWorkingRightNow,
                     color: AppColors.idle,
                   ),
                 )
@@ -616,7 +618,7 @@ class _Overview extends StatelessWidget {
                 ),
         ),
         secondary: AppCard(
-          title: 'Recent registrations',
+          title: AppStrings.recentRegistrations,
           icon: Icons.fiber_new_rounded,
           bodyPadding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
           child: Column(
@@ -721,7 +723,7 @@ class _Requests extends StatelessWidget {
             EmptyState(
               icon: Icons.task_alt_rounded,
               color: AppColors.success,
-              title: 'Inbox zero',
+              title: AppStrings.inboxZero,
               message: 'No company registrations are waiting for review.',
             ),
           ],
@@ -850,10 +852,10 @@ class _RequestCard extends StatelessWidget {
                           foregroundColor: AppColors.danger,
                         ),
                         icon: const Icon(Icons.close_rounded, size: 18),
-                        label: const Text('Reject'),
+                        label: const Text(AppStrings.reject),
                       ),
                       GradientButton(
-                        label: 'Approve',
+                        label: AppStrings.approve,
                         icon: Icons.check_rounded,
                         onPressed: onApprove,
                       ),
@@ -868,7 +870,7 @@ class _RequestCard extends StatelessWidget {
                           Icons.delete_outline_rounded,
                           size: 18,
                         ),
-                        label: const Text('Delete request'),
+                        label: const Text(AppStrings.deleteRequest),
                       ),
                     ],
             ),
@@ -1030,7 +1032,7 @@ class _Companies extends StatelessWidget {
             child: visible.isEmpty
                 ? const EmptyState(
                     icon: Icons.domain_disabled_rounded,
-                    title: 'No companies found',
+                    title: AppStrings.noCompaniesFound,
                   )
                 : SurfaceCard(
                     padding: EdgeInsets.zero,
@@ -1098,11 +1100,11 @@ class _CompanyRow extends StatelessWidget {
         }
       },
       itemBuilder: (_) => [
-        const PopupMenuItem(value: 'open', child: Text('Open')),
+        const PopupMenuItem(value: 'open', child: Text(AppStrings.open)),
         if (c.status == CompanyStatus.approved)
-          const PopupMenuItem(value: 'suspend', child: Text('Suspend')),
+          const PopupMenuItem(value: 'suspend', child: Text(AppStrings.suspend)),
         if (c.status == CompanyStatus.suspended)
-          const PopupMenuItem(value: 'reactivate', child: Text('Reactivate')),
+          const PopupMenuItem(value: 'reactivate', child: Text(AppStrings.reactivate)),
         const PopupMenuItem(
           value: 'delete',
           child: Text('Delete', style: TextStyle(color: AppColors.danger)),
@@ -1117,17 +1119,17 @@ class _CompanyRow extends StatelessWidget {
         _Stat(
           icon: Icons.people_alt_rounded,
           value: '${overview.memberCount}',
-          label: 'members',
+          label: AppStrings.members,
         ),
         _Stat(
           icon: Icons.shield_rounded,
           value: '${overview.adminCount}',
-          label: 'admins',
+          label: AppStrings.admins,
         ),
         _Stat(
           icon: Icons.bolt_rounded,
           value: '${overview.workingNow}',
-          label: 'working',
+          label: AppStrings.working2,
           color: overview.workingNow > 0 ? AppColors.success : null,
         ),
       ],
@@ -1167,8 +1169,8 @@ class _CompanyRow extends StatelessWidget {
 
     final pendingActions = c.status == CompanyStatus.pending
         ? [
-            TextButton(onPressed: onReject, child: const Text('Reject')),
-            FilledButton(onPressed: onApprove, child: const Text('Approve')),
+            TextButton(onPressed: onReject, child: const Text(AppStrings.reject)),
+            FilledButton(onPressed: onApprove, child: const Text(AppStrings.approve)),
           ]
         : const <Widget>[];
 

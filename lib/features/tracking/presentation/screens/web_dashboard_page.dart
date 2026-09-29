@@ -8,6 +8,8 @@ import '../providers/attendance_provider.dart';
 import '../providers/dashboard_provider.dart';
 import '../../../timesheet/data/datasource/web_cache_service.dart';
 import '../widgets/daily_summary_list.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Optimized Web Dashboard Page with smart caching and loading
 /// Features:
@@ -231,7 +233,7 @@ class _OptimizedWebDashboardPageState extends State<OptimizedWebDashboardPage> {
                           )
                         : const Icon(Icons.refresh_rounded),
                     color: Colors.white,
-                    tooltip: 'Refresh',
+                    tooltip: AppStrings.refresh,
                   ),
                 ],
               ),
@@ -341,7 +343,7 @@ class _OptimizedWebDashboardPageState extends State<OptimizedWebDashboardPage> {
 
     return _buildStatCard(
       context,
-      title: 'This Month',
+      title: AppStrings.thisMonth2,
       value: _formatDuration(monthDuration),
       icon: Icons.calendar_month_rounded,
       color: const Color(0xFF34C759),
@@ -360,7 +362,7 @@ class _OptimizedWebDashboardPageState extends State<OptimizedWebDashboardPage> {
 
     return _buildStatCard(
       context,
-      title: 'Total Sessions',
+      title: AppStrings.totalSessions,
       value: totalSessions.toString(),
       icon: Icons.history_rounded,
       color: const Color(0xFFFF9500),

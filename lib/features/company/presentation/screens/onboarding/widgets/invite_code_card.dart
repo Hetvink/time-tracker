@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../providers/company_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class InviteCodeCard extends StatefulWidget {
   const InviteCodeCard({super.key});
@@ -41,21 +43,20 @@ class InviteCodeCardState extends State<InviteCodeCard> {
     final field = TextField(
       controller: _controller,
       decoration: const InputDecoration(
-        hintText: 'Paste your invitation link',
+        hintText: AppStrings.pasteYourInvitationLink,
         prefixIcon: Icon(Icons.link_rounded),
       ),
       onSubmitted: (_) => _join(),
     );
     final button = GradientButton(
-      label: 'Join',
+      label: AppStrings.join,
       icon: Icons.login_rounded,
       loading: _busy,
       onPressed: _join,
     );
     return AppCard(
-      title: 'Joining your team?',
-      subtitle:
-          'Open the invitation e-mail from your admin, or paste the link here.',
+      title: AppStrings.joiningYourTeam,
+      subtitle: AppStrings.openTheInvitationEMailFromYourAdminOrPasteTheLinkHere,
       icon: Icons.group_add_rounded,
       child: context.isPhone
           ? Column(

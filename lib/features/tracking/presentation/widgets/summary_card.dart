@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../timesheet/data/models/daily_timesheet.dart';
 import '../../../../theme/macos_theme.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class SummaryCard extends StatelessWidget {
   final DailyTimeSheet timesheet;
@@ -50,7 +52,7 @@ class SummaryCard extends StatelessWidget {
           _buildSummaryRow(
             context,
             icon: Icons.work_outline_rounded,
-            label: 'Total Work Time',
+            label: AppStrings.totalWorkTime,
             value: _formatDuration(timesheet.totalWorkTime),
             color: MacOSTheme.systemBlue,
           ),
@@ -62,7 +64,7 @@ class SummaryCard extends StatelessWidget {
           _buildSummaryRow(
             context,
             icon: Icons.coffee_outlined,
-            label: 'Total Break Time',
+            label: AppStrings.totalBreakTime,
             value: _formatDuration(timesheet.totalBreakTime),
             color: MacOSTheme.systemGray, // Muted for breaks
           ),
@@ -74,7 +76,7 @@ class SummaryCard extends StatelessWidget {
           _buildSummaryRow(
             context,
             icon: Icons.timer_outlined,
-            label: 'Net Working Hours',
+            label: AppStrings.netWorkingHours,
             value: _formatDuration(timesheet.netWorkTime),
             color: MacOSTheme.systemGreen,
             isHighlighted: true,
@@ -88,7 +90,7 @@ class SummaryCard extends StatelessWidget {
                 child: _buildStatBox(
                   context,
                   icon: Icons.event_note_rounded,
-                  label: 'Sessions',
+                  label: AppStrings.sessions,
                   value: '${timesheet.totalSessions}',
                   color: MacOSTheme.systemGray3Dark,
                 ),
@@ -98,7 +100,7 @@ class SummaryCard extends StatelessWidget {
                 child: _buildStatBox(
                   context,
                   icon: Icons.pause_circle_outline_rounded,
-                  label: 'Breaks',
+                  label: AppStrings.breaks,
                   value: '${timesheet.totalBreaks}',
                   color: MacOSTheme.systemGray3Dark,
                 ),

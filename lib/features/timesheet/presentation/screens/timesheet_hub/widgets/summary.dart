@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/features/timesheet/data/models/daily_timesheet.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class Summary extends StatelessWidget {
   final List<DailyTimeSheet> days;
@@ -23,27 +25,27 @@ class Summary extends StatelessWidget {
       spacing: 14,
       children: [
         KpiCard.duration(
-          label: 'Total worked',
+          label: AppStrings.totalWorked,
           duration: worked,
           icon: Icons.work_history_rounded,
           color: AppColors.primary,
           caption: '$active days worked',
         ),
         KpiCard.duration(
-          label: 'Daily average',
+          label: AppStrings.dailyAverage,
           duration: active == 0 ? Duration.zero : worked ~/ active,
           icon: Icons.speed_rounded,
           color: AppColors.cyan,
           caption: 'Goal ${formatHm(goal)}',
         ),
         KpiCard.duration(
-          label: 'Breaks',
+          label: AppStrings.breaks,
           duration: breaks,
           icon: Icons.coffee_rounded,
           color: AppColors.warning,
         ),
         KpiCard(
-          label: 'Days at goal',
+          label: AppStrings.daysAtGoal,
           numeric: atGoal.toDouble(),
           format: (v) => '${v.round()} / $active',
           icon: Icons.flag_rounded,
@@ -51,7 +53,7 @@ class Summary extends StatelessWidget {
         ),
         if (sleep > Duration.zero)
           KpiCard.duration(
-            label: 'Worked while asleep',
+            label: AppStrings.workedWhileAsleep,
             duration: sleep,
             icon: Icons.bedtime_rounded,
             color: AppColors.pink,

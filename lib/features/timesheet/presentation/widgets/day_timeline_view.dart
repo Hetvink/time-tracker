@@ -16,6 +16,8 @@ import '../../../tracking/data/repository/web_app_activity_repository.dart';
 import '../../../tracking/data/repository/web_attendance_repository.dart';
 import '../../../../theme/macos_theme.dart';
 import 'activity_detail_dialog.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Timeline view showing a complete day with work, break, and not-working periods
 class DayTimelineView extends StatefulWidget {
@@ -410,7 +412,7 @@ class _DayTimelineViewState extends State<DayTimelineView> {
               theme: theme,
               isDark: isDark,
               icon: Icons.work_outline,
-              title: 'Work Sessions',
+              title: AppStrings.workSessions,
               color: MacOSTheme.systemGreen,
               totalDuration: _calculateTotalDuration(workBlocks),
               count: workBlocks.length,
@@ -426,7 +428,7 @@ class _DayTimelineViewState extends State<DayTimelineView> {
               theme: theme,
               isDark: isDark,
               icon: Icons.coffee,
-              title: 'Breaks',
+              title: AppStrings.breaks,
               color: MacOSTheme.systemOrange,
               totalDuration: _calculateTotalDuration(breakBlocks),
               count: breakBlocks.length,

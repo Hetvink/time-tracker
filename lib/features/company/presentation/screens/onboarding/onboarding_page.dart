@@ -12,6 +12,8 @@ import 'widgets/register_company_card.dart';
 import 'widgets/pending_request_card.dart';
 import 'widgets/rejected_request_card.dart';
 import 'widgets/how_it_works.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Shown to signed-in users who don't belong to a company yet:
 /// accept an invitation, or register a company for approval.
@@ -111,14 +113,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             ),
                           ),
                           IconButton(
-                            tooltip: 'Refresh',
+                            tooltip: AppStrings.refresh,
                             onPressed: company.isLoading ? null : company.load,
                             icon: const Icon(Icons.refresh_rounded),
                           ),
                           const SizedBox(width: 4),
                           if (context.isPhone)
                             IconButton(
-                              tooltip: 'Sign out',
+                              tooltip: AppStrings.signOut,
                               onPressed: auth.signOut,
                               icon: const Icon(Icons.logout_rounded),
                             )
@@ -126,7 +128,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             OutlinedButton.icon(
                               onPressed: auth.signOut,
                               icon: const Icon(Icons.logout_rounded, size: 18),
-                              label: const Text('Sign out'),
+                              label: const Text(AppStrings.signOut),
                             ),
                         ],
                       ),
@@ -135,8 +137,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         eyebrow: 'Getting started',
                         title:
                             'Welcome${name.isEmpty ? '' : ', ${name.split(' ').first}'}!',
-                        subtitle:
-                            'Join your team or register your company to start tracking time.',
+                        subtitle: AppStrings.joinYourTeamOrRegisterYourCompanyToStartTrackingTime,
                       ),
                       const SizedBox(height: 28),
                       if (wide)

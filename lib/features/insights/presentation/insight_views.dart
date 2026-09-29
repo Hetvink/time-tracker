@@ -8,6 +8,8 @@ import '../data/insights.dart';
 import '../data/insights_repository.dart';
 import 'insight_cards.dart';
 import 'insights_controllers.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Tabbed analytics for one user: Overview · Day · Month · Apps.
 /// Used by "My activity" and by the admin member profile.
@@ -225,7 +227,7 @@ Widget _toolbar(List<Widget> left, [List<Widget> right = const []]) {
 }
 
 Widget _refreshButton(InsightsController c) => IconButton(
-  tooltip: 'Refresh',
+  tooltip: AppStrings.refresh,
   onPressed: c.isLoading ? null : c.refresh,
   icon: c.isLoading && c.data != null
       ? const SizedBox(
@@ -284,7 +286,7 @@ class RangeInsightsView extends StatelessWidget {
           primary: HourlyCard(insights: i),
           secondary: WeekdayCard(insights: i),
         ),
-        SessionsCard(insights: i, limit: 6, title: 'Recent sessions'),
+        SessionsCard(insights: i, limit: 6, title: AppStrings.recentSessions),
       ],
     );
   }
@@ -437,7 +439,7 @@ class MonthInsightsView extends StatelessWidget {
                 ? null
                 : () => _export(context, month, data),
             icon: const Icon(Icons.download_rounded, size: 18),
-            label: const Text('Export CSV'),
+            label: const Text(AppStrings.exportCsv),
           ),
           _refreshButton(c),
         ],
@@ -574,36 +576,36 @@ class AppsInsightsView extends StatelessWidget {
             spacing: 14,
             children: [
               KpiCard.duration(
-                label: 'Time in apps',
+                label: AppStrings.timeInApps,
                 duration: total,
                 icon: Icons.apps_rounded,
                 color: AppColors.primary,
               ),
               KpiCard(
-                label: 'Distinct apps',
+                label: AppStrings.distinctApps,
                 numeric: i.apps.length.toDouble(),
                 format: (v) => '${v.round()}',
                 icon: Icons.category_rounded,
                 color: AppColors.cyan,
               ),
               KpiCard(
-                label: 'App switches',
+                label: AppStrings.appSwitches,
                 numeric: i.activities.length.toDouble(),
                 format: (v) => '${v.round()}',
                 icon: Icons.swap_horiz_rounded,
                 color: AppColors.violet,
               ),
               KpiCard(
-                label: 'Focus (top 3)',
+                label: AppStrings.focusTop3,
                 value: '${(i.focusScore * 100).round()}%',
                 icon: Icons.center_focus_strong_rounded,
                 color: AppColors.success,
               ),
             ],
           ),
-          AppUsageCard(insights: i, limit: 8, title: 'Share of time'),
+          AppUsageCard(insights: i, limit: 8, title: AppStrings.shareOfTime),
           AppCard(
-            title: 'Apps and windows',
+            title: AppStrings.appsAndWindows,
             subtitle:
                 '${apps.length} apps${q.isEmpty ? '' : ' matching "${c.query}"'}',
             icon: Icons.web_asset_rounded,
@@ -613,7 +615,7 @@ class AppsInsightsView extends StatelessWidget {
                     padding: EdgeInsets.all(24),
                     child: EmptyState(
                       icon: Icons.search_off_rounded,
-                      title: 'No apps found',
+                      title: AppStrings.noAppsFound,
                     ),
                   )
                 : Column(

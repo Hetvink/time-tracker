@@ -22,6 +22,8 @@ import 'password_card.dart';
 import 'company_tile.dart';
 
 import '../settings_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class SettingsPageState extends State<SettingsPage> {
   final _keys = <String, GlobalKey>{};
@@ -121,7 +123,7 @@ class SettingsPageState extends State<SettingsPage> {
   Future<void> _signOut() async {
     if (!await confirmAction(
       context,
-      title: 'Sign out?',
+      title: AppStrings.signOut2,
       message: 'You will need to sign in again to access your data.',
       confirmLabel: 'Sign out',
     )) {
@@ -138,7 +140,7 @@ class SettingsPageState extends State<SettingsPage> {
   Future<void> _clearData() async {
     if (!await confirmAction(
       context,
-      title: 'Delete all data?',
+      title: AppStrings.deleteAllData,
       message:
           'This cannot be undone. All attendance sessions, activity tracking data, breaks and logs on this computer will be permanently deleted.',
       confirmLabel: 'Delete everything',
@@ -159,7 +161,7 @@ class SettingsPageState extends State<SettingsPage> {
   Future<void> _resetApp() async {
     if (!await confirmAction(
       context,
-      title: 'Reset app & clear all storage?',
+      title: AppStrings.resetAppClearAllStorage,
       message:
           'This signs you out, deletes the local database, clears all settings and cached sessions, then quits the app. You will need to sign in again. This cannot be undone.',
       confirmLabel: 'Reset everything',
@@ -179,7 +181,7 @@ class SettingsPageState extends State<SettingsPage> {
           children: [
             CircularProgressIndicator(),
             SizedBox(height: 16),
-            Text('Resetting app…'),
+            Text(AppStrings.resettingApp),
           ],
         ),
       ),
@@ -212,14 +214,14 @@ class SettingsPageState extends State<SettingsPage> {
         Icons.palette_rounded,
         'Appearance',
         AppearanceCard(),
-        subtitle: 'Theme and motion',
+        subtitle: AppStrings.themeAndMotion,
       ),
       Section(
         'goals',
         Icons.flag_rounded,
         'Goals',
         SliderRow(
-          title: 'Daily work goal',
+          title: AppStrings.dailyWorkGoal,
           value: s.dailyGoalMinutes.toDouble(),
           min: 60,
           max: 960,
@@ -229,7 +231,7 @@ class SettingsPageState extends State<SettingsPage> {
               'Used for progress rings, goal lines and "days at goal" across the app.',
           onChanged: _updateDailyGoal,
         ),
-        subtitle: 'Your daily target',
+        subtitle: AppStrings.yourDailyTarget,
       ),
       if (tracker) ...[
         Section(
@@ -239,41 +241,41 @@ class SettingsPageState extends State<SettingsPage> {
           Column(
             children: [
               SwitchRow(
-                title: 'Launch at login',
-                subtitle: 'Start Time Trak automatically when you log in',
+                title: AppStrings.launchAtLogin,
+                subtitle: AppStrings.startTimeTrakAutomaticallyWhenYouLogIn,
                 value: s.autoStartEnabled,
                 onChanged: _toggleAutoStart,
                 trailing: TextButton(
                   onPressed: widget.platformService.openSystemPreferences,
-                  child: const Text('System Settings'),
+                  child: const Text(AppStrings.systemSettings),
                 ),
               ),
               const Divider(height: 1),
               SwitchRow(
-                title: 'Auto check-in',
-                subtitle: 'Check in automatically when the app launches',
+                title: AppStrings.autoCheckIn,
+                subtitle: AppStrings.checkInAutomaticallyWhenTheAppLaunches,
                 value: s.autoCheckInEnabled,
                 onChanged: _toggleAutoCheckIn,
               ),
               if (s.autoCheckInEnabled) ...[
                 const Divider(height: 1),
                 SwitchRow(
-                  title: 'Only on system boot',
-                  subtitle: 'Restrict auto check-in to computer startup',
+                  title: AppStrings.onlyOnSystemBoot,
+                  subtitle: AppStrings.restrictAutoCheckInToComputerStartup,
                   value: s.autoCheckInOnBootOnly,
                   onChanged: _toggleAutoCheckInOnBootOnly,
                 ),
               ],
             ],
           ),
-          subtitle: 'Startup and check-in',
+          subtitle: AppStrings.startupAndCheckIn,
         ),
         Section(
           'breaks',
           Icons.bedtime_rounded,
           'Break detection',
           SliderRow(
-            title: 'Sleep threshold',
+            title: AppStrings.sleepThreshold,
             value: s.sleepThresholdMinutes.toDouble(),
             min: 1,
             max: 60,
@@ -291,16 +293,16 @@ class SettingsPageState extends State<SettingsPage> {
           Column(
             children: [
               SwitchRow(
-                title: 'Track apps and windows',
-                subtitle: 'Record active applications and window titles',
+                title: AppStrings.trackAppsAndWindows,
+                subtitle: AppStrings.recordActiveApplicationsAndWindowTitles,
                 value: s.activityTrackingEnabled,
                 onChanged: _toggleActivityTracking,
               ),
               if (PlatformConfig.isMacOS) ...[
                 const Divider(height: 1),
                 PermissionRow(
-                  title: 'Accessibility permission',
-                  subtitle: 'Required to read window titles and app usage',
+                  title: AppStrings.accessibilityPermission,
+                  subtitle: AppStrings.requiredToReadWindowTitlesAndAppUsage,
                   granted: s.accessibilityPermissionGranted,
                   onOpen: () async {
                     await widget.platformService.openAccessibilityPreferences();
@@ -314,12 +316,12 @@ class SettingsPageState extends State<SettingsPage> {
                 const Divider(height: 1),
                 const ListTile(
                   contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                  title: Text('Automation permission'),
+                  title: Text(AppStrings.automationPermission),
                   subtitle: Text(
                     'macOS asks for this automatically when needed — click "OK" when the dialog appears.',
                   ),
                   trailing: StatusPill(
-                    label: 'Auto-requested',
+                    label: AppStrings.autoRequested,
                     color: AppColors.info,
                   ),
                 ),
@@ -327,7 +329,7 @@ class SettingsPageState extends State<SettingsPage> {
               if (s.activityTrackingEnabled) ...[
                 const Divider(height: 1),
                 SliderRow(
-                  title: 'Tracking interval',
+                  title: AppStrings.trackingInterval,
                   value: s.trackingIntervalSeconds.toDouble(),
                   min: 30,
                   max: 300,
@@ -349,7 +351,7 @@ class SettingsPageState extends State<SettingsPage> {
           Icons.lock_rounded,
           'Security',
           PasswordCard(),
-          subtitle: 'Password',
+          subtitle: AppStrings.password,
         ),
       Section(
         'account',
@@ -364,7 +366,7 @@ class SettingsPageState extends State<SettingsPage> {
                 color: AppColors.primary,
                 size: 38,
               ),
-              title: const Text('Signed in as'),
+              title: const Text(AppStrings.signedInAs),
               subtitle: Text(auth.user?.email ?? 'Not signed in'),
               trailing: OutlinedButton.icon(
                 onPressed: _signOut,
@@ -372,7 +374,7 @@ class SettingsPageState extends State<SettingsPage> {
                   foregroundColor: AppColors.danger,
                 ),
                 icon: const Icon(Icons.logout_rounded, size: 18),
-                label: const Text('Sign out'),
+                label: const Text(AppStrings.signOut),
               ),
             ),
             const Divider(height: 1),
@@ -386,7 +388,7 @@ class SettingsPageState extends State<SettingsPage> {
                   color: AppColors.cyan,
                   size: 38,
                 ),
-                title: const Text('Open web dashboard'),
+                title: const Text(AppStrings.openWebDashboard),
                 subtitle: const Text(
                   'Reports, timesheets and team in your browser',
                 ),
@@ -409,13 +411,13 @@ class SettingsPageState extends State<SettingsPage> {
           builder: (context, snap) => Column(
             children: [
               InfoRow(
-                label: 'Version',
+                label: AppStrings.version,
                 value: snap.hasData
                     ? '${snap.data!.version} (${snap.data!.buildNumber})'
                     : '—',
               ),
               InfoRow(
-                label: 'Platform',
+                label: AppStrings.platform,
                 value: PlatformConfig.isWeb
                     ? 'Web'
                     : PlatformConfig.isMobile
@@ -438,17 +440,15 @@ class SettingsPageState extends State<SettingsPage> {
           Column(
             children: [
               DangerRow(
-                title: 'Clear all data',
-                subtitle:
-                    'Permanently delete attendance sessions, activity data, breaks and logs on this computer',
+                title: AppStrings.clearAllData,
+                subtitle: AppStrings.permanentlyDeleteAttendanceSessionsActivityDataBreaksAndLogsOnThisComputer,
                 icon: Icons.delete_forever_rounded,
                 onTap: _clearData,
               ),
               const Divider(height: 1),
               DangerRow(
-                title: 'Reset app & clear all storage',
-                subtitle:
-                    'Clear login, settings, database and preferences. The app quits afterwards.',
+                title: AppStrings.resetAppClearAllStorage2,
+                subtitle: AppStrings.clearLoginSettingsDatabaseAndPreferencesTheAppQuitsAfterwards,
                 icon: Icons.restart_alt_rounded,
                 onTap: _resetApp,
               ),
@@ -483,8 +483,8 @@ class SettingsPageState extends State<SettingsPage> {
       children: [
         const PageHeader(
           eyebrow: 'Preferences',
-          title: 'Settings',
-          subtitle: 'Personalise Time Trak and manage your account.',
+          title: AppStrings.settings,
+          subtitle: AppStrings.personaliseTimeTrakAndManageYourAccount,
         ),
         const SizedBox(height: 24),
         if (settings.isLoading) const LinearProgressIndicator(),

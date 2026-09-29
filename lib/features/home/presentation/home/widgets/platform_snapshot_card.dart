@@ -5,6 +5,8 @@ import 'package:time_trak/routes/navigation_provider.dart';
 import 'package:time_trak/features/company/data/models/company.dart';
 
 import 'mini.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class PlatformSnapshotCard extends StatelessWidget {
   /// Null while loading.
@@ -17,7 +19,7 @@ class PlatformSnapshotCard extends StatelessWidget {
       builder: (context) {
         final s = stats;
         return AppCard(
-          title: 'Platform snapshot',
+          title: AppStrings.platformSnapshot,
           icon: Icons.admin_panel_settings_rounded,
           actions: [
             TextButton.icon(
@@ -25,7 +27,7 @@ class PlatformSnapshotCard extends StatelessWidget {
                 NavIndex.platformAdmin,
               ),
               icon: const Icon(Icons.arrow_forward_rounded, size: 16),
-              label: const Text('Open console'),
+              label: const Text(AppStrings.openConsole),
             ),
           ],
           child: s == null
@@ -35,22 +37,22 @@ class PlatformSnapshotCard extends StatelessWidget {
                   runSpacing: 12,
                   children: [
                     Mini(
-                      label: 'Pending requests',
+                      label: AppStrings.pendingRequests,
                       value: '${s.companiesPending}',
                       color: AppColors.warning,
                     ),
                     Mini(
-                      label: 'Active companies',
+                      label: AppStrings.activeCompanies,
                       value: '${s.companiesApproved}',
                       color: AppColors.primary,
                     ),
                     Mini(
-                      label: 'Users',
+                      label: AppStrings.users,
                       value: '${s.usersTotal}',
                       color: AppColors.violet,
                     ),
                     Mini(
-                      label: 'Working now',
+                      label: AppStrings.workingNow,
                       value: '${s.workingNow}',
                       color: AppColors.success,
                     ),

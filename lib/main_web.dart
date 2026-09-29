@@ -9,6 +9,8 @@ import 'features/auth/data/datasource/auth_service.dart';
 import 'features/company/presentation/providers/company_provider.dart';
 import 'features/settings/presentation/providers/preferences_service.dart';
 import 'theme/app_theme.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -96,7 +98,7 @@ class _InitErrorApp extends StatelessWidget {
                 const SizedBox(height: 16),
                 FilledButton(
                   onPressed: () => web.window.location.reload(),
-                  child: const Text('Reload'),
+                  child: const Text(AppStrings.reload),
                 ),
               ],
             ),
@@ -149,11 +151,11 @@ class _OAuthCallbackScreenState extends State<OAuthCallbackScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text('You can close this tab and return to Time Trak.'),
+                const Text(AppStrings.youCanCloseThisTabAndReturnToTimeTrak),
                 const SizedBox(height: 16),
                 TextButton(
                   onPressed: () => web.window.close(),
-                  child: const Text('Close tab'),
+                  child: const Text(AppStrings.closeTab),
                 ),
               ],
             ),

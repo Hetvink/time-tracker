@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../data/repository/admin_repository.dart';
 import '../providers/admin_dashboard_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class UserMonthlySummaryDashboard extends StatelessWidget {
   final String userId;
@@ -188,7 +190,7 @@ class UserMonthlySummaryDashboard extends StatelessWidget {
                           size: 18,
                         ),
                         onPressed: () => adminProvider.refreshData(),
-                        tooltip: 'Refresh',
+                        tooltip: AppStrings.refresh,
                       ),
                     ],
                   ),
@@ -1073,7 +1075,7 @@ class UserMonthlySummaryDashboard extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          ElevatedButton(onPressed: retry, child: const Text('Retry')),
+          ElevatedButton(onPressed: retry, child: const Text(AppStrings.retry)),
         ],
       ),
     );

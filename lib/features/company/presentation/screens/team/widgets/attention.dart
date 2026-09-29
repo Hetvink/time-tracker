@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../../data/models/company_invitation.dart';
 import '../../../../data/models/team_member.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class Attention extends StatelessWidget {
   final List<TeamMember> members;
@@ -60,12 +62,12 @@ class Attention extends StatelessWidget {
           icon: Icons.person_off_rounded,
           color: AppColors.danger,
           title: m.displayName,
-          subtitle: 'Account deactivated',
+          subtitle: AppStrings.accountDeactivated,
           onTap: () => onOpen(m),
         ),
     ];
     return AppCard(
-      title: 'Needs attention',
+      title: AppStrings.needsAttention,
       subtitle: rows.isEmpty
           ? 'All good'
           : '${rows.length} item${rows.length == 1 ? '' : 's'}',
@@ -76,7 +78,7 @@ class Attention extends StatelessWidget {
               height: 200,
               child: EmptyState(
                 icon: Icons.verified_rounded,
-                title: 'Everything looks healthy',
+                title: AppStrings.everythingLooksHealthy,
                 color: AppColors.success,
               ),
             )

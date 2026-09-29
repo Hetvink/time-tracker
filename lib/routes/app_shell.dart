@@ -6,6 +6,8 @@ import '../core/widgets/ui_kit.dart';
 import '../features/auth/presentation/providers/auth_provider.dart';
 import '../features/company/presentation/providers/company_provider.dart';
 import 'navigation_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class ShellDestination {
   final int index;
@@ -194,7 +196,7 @@ class _Sidebar extends StatelessWidget {
                       ),
                       if (allowToggle)
                         IconButton(
-                          tooltip: 'Collapse sidebar',
+                          tooltip: AppStrings.collapseSidebar,
                           onPressed: context
                               .read<NavigationProvider>()
                               .toggleSidebar,
@@ -210,7 +212,7 @@ class _Sidebar extends StatelessWidget {
               if (collapsed && allowToggle)
                 Center(
                   child: IconButton(
-                    tooltip: 'Expand sidebar',
+                    tooltip: AppStrings.expandSidebar,
                     onPressed: context.read<NavigationProvider>().toggleSidebar,
                     icon: const Icon(
                       Icons.keyboard_double_arrow_right_rounded,
@@ -493,7 +495,7 @@ class _AccountMenu extends StatelessWidget {
     final auth = context.read<AuthProvider>();
     final theme = context.watch<ThemeController>();
     return PopupMenuButton<String>(
-      tooltip: 'Account',
+      tooltip: AppStrings.account,
       position: PopupMenuPosition.over,
       offset: const Offset(0, -8),
       onSelected: (v) async {
@@ -507,7 +509,7 @@ class _AccountMenu extends StatelessWidget {
           case 'signout':
             if (await confirmAction(
               context,
-              title: 'Sign out?',
+              title: AppStrings.signOut2,
               message: 'You can sign back in at any time.',
               confirmLabel: 'Sign out',
             )) {
@@ -800,7 +802,7 @@ class _PhoneShell extends StatelessWidget {
                     child: const Icon(Icons.grid_view_rounded),
                   ),
                   selectedIcon: const Icon(Icons.grid_view_rounded),
-                  label: 'More',
+                  label: AppStrings.more,
                 ),
             ],
           ),

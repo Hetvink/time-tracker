@@ -8,6 +8,8 @@ import 'company_list_controller.dart';
 import 'company_row.dart';
 
 import '../platform_admin_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class Companies extends StatelessWidget {
   final List<CompanyOverview> companies;
@@ -136,7 +138,7 @@ class Companies extends StatelessWidget {
             child: visible.isEmpty
                 ? const EmptyState(
                     icon: Icons.domain_disabled_rounded,
-                    title: 'No companies found',
+                    title: AppStrings.noCompaniesFound,
                   )
                 : SurfaceCard(
                     padding: EdgeInsets.zero,

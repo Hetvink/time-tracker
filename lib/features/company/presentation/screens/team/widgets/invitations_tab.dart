@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../../../auth/data/models/user_role.dart';
 import '../../../../data/models/company_invitation.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class InvitationsTab extends StatefulWidget {
   final List<CompanyInvitation> invitations;
@@ -46,13 +48,13 @@ class InvitationsTabState extends State<InvitationsTab> {
     if (widget.invitations.isEmpty) {
       return EmptyState(
         icon: Icons.mark_email_unread_rounded,
-        title: 'No invitations yet',
+        title: AppStrings.noInvitationsYet,
         message:
             'Invite people by e-mail. They join by opening the link and signing in.',
         action: widget.onInvite == null
             ? null
             : GradientButton(
-                label: 'Invite members',
+                label: AppStrings.inviteMembers,
                 icon: Icons.person_add_alt_1_rounded,
                 onPressed: widget.onInvite,
               ),
@@ -80,21 +82,21 @@ class InvitationsTabState extends State<InvitationsTab> {
               spacing: 14,
               children: [
                 KpiCard(
-                  label: 'Sent',
+                  label: AppStrings.sent,
                   numeric: widget.invitations.length.toDouble(),
                   format: (v) => '${v.round()}',
                   icon: Icons.outgoing_mail,
                   color: AppColors.primary,
                 ),
                 KpiCard(
-                  label: 'Waiting',
+                  label: AppStrings.waiting,
                   numeric: open.toDouble(),
                   format: (v) => '${v.round()}',
                   icon: Icons.hourglass_top_rounded,
                   color: AppColors.warning,
                 ),
                 KpiCard(
-                  label: 'Accepted',
+                  label: AppStrings.accepted,
                   numeric: accepted.toDouble(),
                   format: (v) => '${v.round()}',
                   icon: Icons.how_to_reg_rounded,
@@ -139,7 +141,7 @@ class InvitationsTabState extends State<InvitationsTab> {
                       padding: EdgeInsets.all(24),
                       child: EmptyState(
                         icon: Icons.inbox_rounded,
-                        title: 'No waiting invitations',
+                        title: AppStrings.noWaitingInvitations,
                       ),
                     ),
                 ],
@@ -205,7 +207,7 @@ class InvitationRow extends StatelessWidget {
                     StatusPill(label: label, color: color),
                     if (inv.role == UserRole.admin)
                       const StatusPill(
-                        label: 'Admin',
+                        label: AppStrings.admin,
                         color: AppColors.warning,
                       ),
                   ],
@@ -222,7 +224,7 @@ class InvitationRow extends StatelessWidget {
           ),
           if (inv.isOpen) ...[
             IconButton(
-              tooltip: 'Copy invite link',
+              tooltip: AppStrings.copyInviteLink,
               onPressed: onCopy,
               icon: const Icon(Icons.link_rounded),
             ),
@@ -230,7 +232,7 @@ class InvitationRow extends StatelessWidget {
               icon: const Icon(Icons.more_horiz_rounded),
               onSelected: (v) => v == 'resend' ? onResend() : onRevoke(),
               itemBuilder: (_) => const [
-                PopupMenuItem(value: 'resend', child: Text('Resend e-mail')),
+                PopupMenuItem(value: 'resend', child: Text(AppStrings.resendEMail)),
                 PopupMenuItem(
                   value: 'revoke',
                   child: Text(
@@ -241,7 +243,7 @@ class InvitationRow extends StatelessWidget {
               ],
             ),
           ] else if (inv.status != InvitationStatus.accepted)
-            TextButton(onPressed: onResend, child: const Text('Invite again')),
+            TextButton(onPressed: onResend, child: const Text(AppStrings.inviteAgain)),
         ],
       ),
     );

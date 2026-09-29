@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
 import 'effects_3d.dart';
 import 'responsive.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 export '../state/keep_alive.dart';
 export '../state/submit_controller.dart';
@@ -125,7 +127,7 @@ Future<bool> confirmAction(
       actions: [
         OutlinedButton(
           onPressed: () => Navigator.pop(ctx, false),
-          child: const Text('Cancel'),
+          child: const Text(AppStrings.cancel),
         ),
         FilledButton(
           style: destructive
@@ -1351,7 +1353,7 @@ class PeriodStepper extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            tooltip: 'Previous',
+            tooltip: AppStrings.previous,
             visualDensity: VisualDensity.compact,
             onPressed: onPrevious,
             icon: const Icon(Icons.chevron_left_rounded),
@@ -1387,7 +1389,7 @@ class PeriodStepper extends StatelessWidget {
             ),
           ),
           IconButton(
-            tooltip: 'Next',
+            tooltip: AppStrings.next,
             visualDensity: VisualDensity.compact,
             onPressed: onNext,
             icon: const Icon(Icons.chevron_right_rounded),
@@ -1396,13 +1398,13 @@ class PeriodStepper extends StatelessWidget {
             Container(width: 1, height: 22, color: colors.border),
             if (context.isPhone)
               IconButton(
-                tooltip: 'Today',
+                tooltip: AppStrings.today,
                 visualDensity: VisualDensity.compact,
                 onPressed: onToday,
                 icon: const Icon(Icons.today_rounded, size: 20),
               )
             else
-              TextButton(onPressed: onToday, child: const Text('Today')),
+              TextButton(onPressed: onToday, child: const Text(AppStrings.today)),
           ],
         ],
       ),
@@ -1704,7 +1706,7 @@ class ErrorState extends StatelessWidget {
           : FilledButton.icon(
               onPressed: onRetry,
               icon: const Icon(Icons.refresh_rounded, size: 18),
-              label: const Text('Try again'),
+              label: const Text(AppStrings.tryAgain),
             ),
     );
   }

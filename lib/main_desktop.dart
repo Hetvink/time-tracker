@@ -45,6 +45,8 @@ import 'core/constants/app_env.dart';
 import 'core/widgets/splash.dart';
 import 'core/widgets/ui_kit.dart';
 import 'routes/app_shell.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 void _log(String message) {
   try {
@@ -322,7 +324,7 @@ class InitializationErrorApp extends StatelessWidget {
                     ElevatedButton.icon(
                       onPressed: () => exit(1),
                       icon: const Icon(Icons.exit_to_app),
-                      label: const Text('Quit'),
+                      label: const Text(AppStrings.quit),
                     ),
                     const SizedBox(width: 16),
                     ElevatedButton.icon(
@@ -334,7 +336,7 @@ class InitializationErrorApp extends StatelessWidget {
                         exit(0);
                       },
                       icon: const Icon(Icons.refresh),
-                      label: const Text('Restart'),
+                      label: const Text(AppStrings.restart),
                     ),
                   ],
                 ),
@@ -489,10 +491,10 @@ class _DesktopAppState extends State<DesktopApp>
 
     Menu menu = Menu(
       items: [
-        MenuItem(key: 'show_window', label: 'Show Window'),
-        MenuItem(key: 'hide_window', label: 'Hide Window'),
+        MenuItem(key: 'show_window', label: AppStrings.showWindow),
+        MenuItem(key: 'hide_window', label: AppStrings.hideWindow),
         MenuItem.separator(),
-        MenuItem(key: 'quit', label: 'Quit Time Trak (Close App)'),
+        MenuItem(key: 'quit', label: AppStrings.quitTimeTrakCloseApp),
       ],
     );
 
@@ -644,7 +646,7 @@ class _DesktopAppState extends State<DesktopApp>
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Time Trak - Desktop',
+      title: AppStrings.timeTrakDesktop,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
@@ -788,13 +790,13 @@ class DesktopTrackingView extends StatelessWidget {
           index: NavIndex.dashboard,
           icon: Icons.timer_outlined,
           selectedIcon: Icons.timer_rounded,
-          label: 'Tracker',
+          label: AppStrings.tracker,
         ),
         ShellDestination(
           index: NavIndex.desktopSettings,
           icon: Icons.settings_outlined,
           selectedIcon: Icons.settings_rounded,
-          label: 'Settings',
+          label: AppStrings.settings,
           section: 'Account',
         ),
       ],

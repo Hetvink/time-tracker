@@ -6,6 +6,8 @@ import '../../../../../auth/data/models/user_role.dart';
 import '../../../../../auth/presentation/providers/auth_provider.dart';
 import '../../../../data/models/company_invitation.dart';
 import '../../../providers/company_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class InvitationCard extends StatefulWidget {
   final CompanyInvitation invitation;
@@ -97,12 +99,12 @@ class InvitationCardState extends State<InvitationCard> {
             const SizedBox(height: 14),
             InfoRow(
               icon: Icons.alternate_email_rounded,
-              label: 'Invitation for',
+              label: AppStrings.invitationFor,
               value: inv.email,
             ),
             InfoRow(
               icon: Icons.event_rounded,
-              label: 'Expires',
+              label: AppStrings.expires,
               value: formatDate(inv.expiresAt),
             ),
             if (wrongAccount) ...[
@@ -146,7 +148,7 @@ class InvitationCardState extends State<InvitationCard> {
                         FilledButton.icon(
                           onPressed: context.read<AuthProvider>().signOut,
                           icon: const Icon(Icons.swap_horiz_rounded, size: 18),
-                          label: const Text('Switch account'),
+                          label: const Text(AppStrings.switchAccount),
                         ),
                       ]
                     : [
@@ -157,10 +159,10 @@ class InvitationCardState extends State<InvitationCard> {
                                   () => provider.declineInvitation(inv.token),
                                   'Invitation declined',
                                 ),
-                          child: const Text('Decline'),
+                          child: const Text(AppStrings.decline),
                         ),
                         GradientButton(
-                          label: 'Join team',
+                          label: AppStrings.joinTeam,
                           icon: Icons.group_add_rounded,
                           loading: _busy,
                           onPressed: () => _act(

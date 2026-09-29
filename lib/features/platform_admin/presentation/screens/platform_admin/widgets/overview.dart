@@ -6,6 +6,8 @@ import 'package:time_trak/features/company/data/models/company.dart';
 import 'company_avatar.dart';
 
 import '../platform_admin_page.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class Overview extends StatelessWidget {
   final PlatformStats stats;
@@ -85,7 +87,7 @@ class Overview extends StatelessWidget {
         spacing: 14,
         children: [
           KpiCard(
-            label: 'Companies',
+            label: AppStrings.companies,
             numeric: s.companiesTotal.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.domain_rounded,
@@ -93,7 +95,7 @@ class Overview extends StatelessWidget {
             caption: '${s.companiesApproved} active',
           ),
           KpiCard(
-            label: 'Pending requests',
+            label: AppStrings.pendingRequests,
             numeric: s.companiesPending.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.inbox_rounded,
@@ -101,7 +103,7 @@ class Overview extends StatelessWidget {
             onTap: onShowRequests,
           ),
           KpiCard(
-            label: 'Users',
+            label: AppStrings.users,
             numeric: s.usersTotal.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.people_alt_rounded,
@@ -109,7 +111,7 @@ class Overview extends StatelessWidget {
             caption: '${s.usersWithoutCompany} without a company',
           ),
           KpiCard(
-            label: 'Working now',
+            label: AppStrings.workingNow,
             numeric: s.workingNow.toDouble(),
             format: (v) => '${v.round()}',
             icon: Icons.bolt_rounded,
@@ -123,7 +125,7 @@ class Overview extends StatelessWidget {
         primaryFlex: 2,
         secondaryFlex: 3,
         primary: AppCard(
-          title: 'Companies by status',
+          title: AppStrings.companiesByStatus,
           icon: Icons.donut_large_rounded,
           child: Center(
             child: Column(
@@ -180,7 +182,7 @@ class Overview extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 ShareBar(
-                  label: 'Users in a company',
+                  label: AppStrings.usersInACompany,
                   trailing: '$assigned / ${s.usersTotal}',
                   fraction: s.usersTotal == 0 ? 0 : assigned / s.usersTotal,
                   color: AppColors.violet,
@@ -190,15 +192,15 @@ class Overview extends StatelessWidget {
           ),
         ),
         secondary: AppCard(
-          title: 'Largest companies',
-          subtitle: 'Members per company',
+          title: AppStrings.largestCompanies,
+          subtitle: AppStrings.membersPerCompany,
           icon: Icons.bar_chart_rounded,
           child: bySize.isEmpty
               ? const SizedBox(
                   height: 200,
                   child: EmptyState(
                     icon: Icons.domain_disabled_rounded,
-                    title: 'No active companies',
+                    title: AppStrings.noActiveCompanies,
                   ),
                 )
               : HoursBarChart(
@@ -220,8 +222,8 @@ class Overview extends StatelessWidget {
       ),
       SplitPanes(
         primary: AppCard(
-          title: 'Working right now',
-          subtitle: 'Live members per company',
+          title: AppStrings.workingRightNow,
+          subtitle: AppStrings.liveMembersPerCompany,
           icon: Icons.sensors_rounded,
           actions: [
             if (s.workingNow > 0) const PulseDot(color: AppColors.success),
@@ -231,7 +233,7 @@ class Overview extends StatelessWidget {
                   height: 160,
                   child: EmptyState(
                     icon: Icons.nights_stay_rounded,
-                    title: 'Nobody is working right now',
+                    title: AppStrings.nobodyIsWorkingRightNow,
                     color: AppColors.idle,
                   ),
                 )
@@ -257,7 +259,7 @@ class Overview extends StatelessWidget {
                 ),
         ),
         secondary: AppCard(
-          title: 'Recent registrations',
+          title: AppStrings.recentRegistrations,
           icon: Icons.fiber_new_rounded,
           bodyPadding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
           child: Column(

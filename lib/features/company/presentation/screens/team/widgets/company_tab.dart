@@ -6,6 +6,8 @@ import '../../../../data/models/company.dart';
 import '../../../providers/company_provider.dart';
 import '../../../providers/team_controller.dart';
 import '../../../widgets/company_details_form.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class CompanyTab extends StatelessWidget {
   final bool platformView;
@@ -38,8 +40,8 @@ class CompanyTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           AppCard(
-            title: 'Company profile',
-            subtitle: 'Shown to members and platform admins',
+            title: AppStrings.companyProfile,
+            subtitle: AppStrings.shownToMembersAndPlatformAdmins,
             icon: Icons.business_rounded,
             child: CompanyDetailsForm(
               key: ValueKey(company.id),
@@ -60,19 +62,19 @@ class CompanyTab extends StatelessWidget {
           ),
           const SizedBox(height: 18),
           AppCard(
-            title: 'Details',
+            title: AppStrings.details,
             icon: Icons.info_outline_rounded,
             child: Column(
               children: [
-                InfoRow(label: 'Status', value: company.status.label),
+                InfoRow(label: AppStrings.status, value: company.status.label),
                 InfoRow(
-                  label: 'Workspace ID',
+                  label: AppStrings.workspaceId,
                   value: company.slug.isEmpty ? company.id : company.slug,
                 ),
-                InfoRow(label: 'Created', value: formatDate(company.createdAt)),
+                InfoRow(label: AppStrings.created, value: formatDate(company.createdAt)),
                 if (company.reviewedAt != null)
                   InfoRow(
-                    label: 'Approved',
+                    label: AppStrings.approved,
                     value: formatDate(company.reviewedAt),
                   ),
               ],
@@ -115,7 +117,7 @@ class CompanyTab extends StatelessWidget {
                       side: const BorderSide(color: AppColors.danger),
                     ),
                     icon: const Icon(Icons.logout_rounded, size: 18),
-                    label: const Text('Leave company'),
+                    label: const Text(AppStrings.leaveCompany),
                     onPressed: () => _leave(context, company),
                   ),
                 ],

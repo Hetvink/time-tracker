@@ -6,6 +6,8 @@ import '../providers/timesheet_page_provider.dart';
 import '../../../../theme/macos_theme.dart';
 import '../widgets/monthly_timesheet_summary.dart';
 import '../widgets/daily_timesheet_table.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class MonthlyTimeSheetPage extends StatelessWidget {
   const MonthlyTimeSheetPage({super.key});
@@ -49,7 +51,7 @@ class MonthlyTimeSheetPage extends StatelessWidget {
                           IconButton(
                             onPressed: pageProvider.refresh,
                             icon: const Icon(Icons.refresh_rounded),
-                            tooltip: 'Refresh',
+                            tooltip: AppStrings.refresh,
                           ),
                           const SizedBox(width: 8),
                           // Month/Year Picker Button
@@ -143,7 +145,7 @@ class MonthlyTimeSheetPage extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: pageProvider.refresh,
                   icon: const Icon(Icons.refresh_rounded),
-                  label: const Text('Retry'),
+                  label: const Text(AppStrings.retry),
                 ),
               ],
             ),
@@ -264,12 +266,12 @@ class MonthlyTimeSheetPage extends StatelessWidget {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Select Month'),
+        title: const Text(AppStrings.selectMonth),
         content: SizedBox(
           width: 300,
           height: 400,
           child: availableMonths.isEmpty
-              ? const Center(child: Text('No data available'))
+              ? const Center(child: Text(AppStrings.noDataAvailable))
               : ListView.builder(
                   itemCount: availableMonths.length,
                   itemBuilder: (context, index) {
@@ -295,7 +297,7 @@ class MonthlyTimeSheetPage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: const Text(AppStrings.cancel),
           ),
         ],
       ),

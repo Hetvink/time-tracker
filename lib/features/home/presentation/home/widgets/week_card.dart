@@ -5,6 +5,8 @@ import 'package:time_trak/core/widgets/charts.dart';
 import 'package:time_trak/core/widgets/ui_kit.dart';
 import 'package:time_trak/routes/navigation_provider.dart';
 import 'package:time_trak/features/insights/data/insights.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class WeekCard extends StatelessWidget {
   final Insights insights;
@@ -21,7 +23,7 @@ class WeekCard extends StatelessWidget {
       (a, d) => a + (insights.daily[d] ?? Duration.zero),
     );
     return AppCard(
-      title: 'This week',
+      title: AppStrings.thisWeek,
       subtitle: '${formatHm(total)} tracked · tap a day for details',
       icon: Icons.bar_chart_rounded,
       child: HoursBarChart(

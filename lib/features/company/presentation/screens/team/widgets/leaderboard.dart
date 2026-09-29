@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/widgets/charts.dart';
 import '../../../../../../core/widgets/ui_kit.dart';
 import '../../../../data/models/team_member.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class Leaderboard extends StatelessWidget {
   final List<TeamMember> members;
@@ -14,8 +16,8 @@ class Leaderboard extends StatelessWidget {
     final sorted = [...members]..sort((a, b) => b.week.compareTo(a.week));
     final top = sorted.take(10).toList();
     return AppCard(
-      title: 'This week',
-      subtitle: 'Hours per member',
+      title: AppStrings.thisWeek,
+      subtitle: AppStrings.hoursPerMember,
       icon: Icons.leaderboard_rounded,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

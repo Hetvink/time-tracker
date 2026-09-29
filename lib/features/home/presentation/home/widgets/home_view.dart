@@ -16,6 +16,8 @@ import 'week_card.dart';
 import 'team_pulse_card.dart';
 import 'platform_snapshot_card.dart';
 import 'get_started_card.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -39,11 +41,11 @@ class HomeView extends StatelessWidget {
       eyebrow: DateFormat('EEEE, d MMMM').format(DateTime.now()),
       title:
           '${greeting()}${name.isEmpty ? '' : ', ${name.split(' ').first}'} 👋',
-      subtitle: 'Here is how your day is going.',
+      subtitle: AppStrings.hereIsHowYourDayIsGoing,
       onRefresh: c.refresh,
       actions: [
         IconButton(
-          tooltip: 'Refresh',
+          tooltip: AppStrings.refresh,
           onPressed: c.isLoading ? null : c.refresh,
           icon: const Icon(Icons.refresh_rounded),
         ),
@@ -51,7 +53,7 @@ class HomeView extends StatelessWidget {
           onPressed: () =>
               context.read<NavigationProvider>().selectIndex(NavIndex.activity),
           icon: const Icon(Icons.insights_rounded, size: 18),
-          label: const Text('Full analytics'),
+          label: const Text(AppStrings.fullAnalytics),
         ),
       ],
       children: [
@@ -70,11 +72,11 @@ class HomeView extends StatelessWidget {
             if (company.isSuperAdmin)
               PlatformSnapshotCard(stats: c.platformStats),
             SplitPanes(
-              primary: AppUsageCard(insights: _today(i), title: 'Apps today'),
+              primary: AppUsageCard(insights: _today(i), title: AppStrings.appsToday),
               secondary: SessionsCard(
                 insights: i,
                 limit: 5,
-                title: 'Recent sessions',
+                title: AppStrings.recentSessions,
               ),
             ),
           ] else

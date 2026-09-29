@@ -4,6 +4,8 @@ import '../../data/models/daily_timesheet.dart';
 import '../../../tracking/data/models/attendance_state.dart';
 import '../../../tracking/presentation/providers/attendance_provider.dart';
 import '../../../../theme/macos_theme.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class LiveTimesheetSummary extends StatelessWidget {
   final DailyTimeSheet timesheet;
@@ -140,7 +142,7 @@ class LiveTimesheetSummary extends StatelessWidget {
                     context,
                     'Net Work',
                     _formatDuration(netWorkDuration),
-                    subtitle: 'Without Sleep',
+                    subtitle: AppStrings.withoutSleep,
                   ),
                 ],
               ),

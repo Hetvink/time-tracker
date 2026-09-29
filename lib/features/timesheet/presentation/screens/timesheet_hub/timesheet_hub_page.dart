@@ -7,6 +7,8 @@ import 'package:time_trak/features/timesheet/presentation/providers/monthly_time
 
 import 'widgets/calendar_grid.dart';
 import 'widgets/monthly_timesheet.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// Official monthly timesheet (stored session totals) plus the hour-by-hour
 /// calendar grid.
@@ -30,9 +32,8 @@ class TimesheetHubPage extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(gutter, gutter, gutter, 8),
                 child: const PageHeader(
                   eyebrow: 'Records',
-                  title: 'Timesheet',
-                  subtitle:
-                      'Your official monthly hours, day by day, ready to export.',
+                  title: AppStrings.timesheet,
+                  subtitle: AppStrings.yourOfficialMonthlyHoursDayByDayReadyToExport,
                 ),
               ),
               Padding(

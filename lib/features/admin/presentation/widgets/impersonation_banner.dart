@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/impersonation_provider.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 /// A prominent banner displayed when admin is in impersonation mode
 /// Shows clear indication that the admin is viewing as another user
@@ -105,7 +107,7 @@ class ImpersonationBanner extends StatelessWidget {
                   Navigator.of(context).popUntil((route) => route.isFirst);
                 },
                 icon: const Icon(Icons.exit_to_app, size: 18),
-                label: const Text('Exit Impersonation'),
+                label: const Text(AppStrings.exitImpersonation),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.orange.shade700,

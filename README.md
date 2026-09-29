@@ -258,7 +258,6 @@ UI Refresh
 - **Windows**: C++ (Win32 API, System tray)
 
 ### Additional Libraries
-- **Firebase** (Crashlytics, Core) - Error tracking
 - **URL Launcher** - Deep linking
 - **Shared Preferences** - Settings persistence
 - **Window Manager** (v0.5.1) - Desktop window control
@@ -684,7 +683,7 @@ AttendanceProvider.endBreak()
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-org/time_trak.git
+git clone https://github.com/hetvink/time-tracker.git
 cd time_trak
 ```
 
@@ -1532,7 +1531,7 @@ del %APPDATA%\time_trak\attendance_tracker.db
 
 ### Getting Help
 
-- **GitHub Issues**: [https://github.com/your-org/time_trak/issues](https://github.com/your-org/time_trak/issues)
+- **GitHub Issues**: [https://github.com/hetvink/time-tracker/issues](https://github.com/hetvink/time-tracker/issues)
 - **Documentation**: Check this README and inline code comments
 - **Contact**: Reach out to the development team
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../data/models/daily_timesheet.dart';
 import '../../../../theme/macos_theme.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class MonthlyTimesheetSummary extends StatelessWidget {
   final List<DailyTimeSheet> timesheets;
@@ -67,7 +69,7 @@ class MonthlyTimesheetSummary extends StatelessWidget {
                 context,
                 'Total Work',
                 _formatDuration(totalWorkWithSleep),
-                subtitle: 'With Sleep',
+                subtitle: AppStrings.withSleep,
                 isBold: true,
               ),
               _buildSummaryItem(
@@ -84,7 +86,7 @@ class MonthlyTimesheetSummary extends StatelessWidget {
                 context,
                 'Net Work',
                 _formatDuration(netWorkDuration),
-                subtitle: 'Without Sleep',
+                subtitle: AppStrings.withoutSleep,
               ),
             ],
           ),

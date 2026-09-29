@@ -6,6 +6,8 @@ import '../../../../data/models/team_member.dart';
 import '../team_page.dart';
 import 'member_row.dart';
 import 'member_list_controller.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class MembersTab extends StatelessWidget {
   final List<TeamMember> members;
@@ -53,7 +55,7 @@ class MembersTab extends StatelessWidget {
           children: [
             SearchField(hint: 'Search name or e-mail', onChanged: c.setQuery),
             PopupMenuButton<Sort>(
-              tooltip: 'Sort',
+              tooltip: AppStrings.sort,
               initialValue: c.sort,
               onSelected: c.setSort,
               itemBuilder: (_) => [
@@ -125,7 +127,7 @@ class MembersTab extends StatelessWidget {
             : 'Try a different search or filter.',
         action: members.isEmpty && onInvite != null
             ? GradientButton(
-                label: 'Invite members',
+                label: AppStrings.inviteMembers,
                 icon: Icons.person_add_alt_1_rounded,
                 onPressed: onInvite,
               )

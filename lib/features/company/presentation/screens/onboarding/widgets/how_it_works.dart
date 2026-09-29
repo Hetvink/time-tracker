@@ -3,6 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../core/constants/app_env.dart';
 import '../../../../../../core/widgets/ui_kit.dart';
+import 'package:time_trak/core/constants/app_strings.dart';
+
 
 class HowItWorks extends StatelessWidget {
   const HowItWorks({super.key});
@@ -93,7 +95,7 @@ class HowItWorks extends StatelessWidget {
             ),
           if (download != null)
             GradientButton(
-              label: 'Download the desktop app',
+              label: AppStrings.downloadTheDesktopApp,
               icon: Icons.download_rounded,
               expand: true,
               onPressed: () => launchUrl(Uri.parse(download)),

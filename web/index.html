@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+  <head>
+    <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+    <base href="$FLUTTER_BASE_HREF" />
+
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta
+      name="description"
+      content="Time Trak - Track your time, boost your productivity"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- iOS meta tags & icons -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="time_trak" />
+    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <title>Time Trak</title>
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- OAuth Callback Handler & Debug Logging -->
+    <script>
+      // Log initial page load
+      console.log("[TimeTrak Web] Page loaded at:", new Date().toISOString());
+      console.log("[TimeTrak Web] Current URL:", window.location.href);
+
+      // Check if this is an OAuth callback
+      if (window.location.hash) {
+        console.log("[TimeTrak Web] 🔐 OAuth callback detected!");
+        console.log("[TimeTrak Web] URL Hash:", window.location.hash);
+
+        // Check for access token or error in hash
+        if (window.location.hash.includes("access_token")) {
+          console.log(
+            "[TimeTrak Web] ✅ Access token found in URL - Login successful!",
+          );
+
+          // Send callback to main tab via BroadcastChannel
+          try {
+            const channel = new BroadcastChannel("oauth_callback_channel");
+            channel.postMessage({
+              type: "oauth_callback",
+              url: window.location.href,
+            });
+            console.log("[TimeTrak Web] 📡 Sent OAuth callback to main tab");
+            channel.close();
+
+            // Check if this is an OAuth tab that should close
+            const urlParams = new URLSearchParams(window.location.search);
+            const isOAuthTab = urlParams.has('_oauth_tab');
+            
+            // Also check if there are other tabs open (indicates this is likely an OAuth tab)
+            const hasOpener = !!window.opener;
+            
+            console.log("[TimeTrak Web] OAuth tab detection:");
+            console.log("  - Has _oauth_tab param:", isOAuthTab);
+            console.log("  - Has window.opener:", hasOpener);
+            
+            if (isOAuthTab || hasOpener) {
+              console.log(
+                "[TimeTrak Web] 🔄 This is an OAuth tab, closing in 1000ms...",
+              );
+              
+              // Show a brief message before closing
+              document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:18px;color:#666;">✅ Login successful! Closing this tab...</div>';
+              
+              setTimeout(() => {
+                window.close();
+                
+                // If window.close() doesn't work (some browsers prevent it),
+                // try to navigate back or show a message
+                setTimeout(() => {
+                  if (!window.closed) {
+                    console.log("[TimeTrak Web] ⚠️ Could not auto-close tab, showing message");
+                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;text-align:center;padding:20px;"><div><h2 style="color:#4CAF50;">✅ Login Successful!</h2><p style="color:#666;margin-top:10px;">You can close this tab and return to the main window.</p></div></div>';
+                  }
+                }, 500);
+              }, 1000);
+            } else {
+              console.log(
+                "[TimeTrak Web] ℹ️ This is the main tab, continuing normally",
+              );
+            }
+          } catch (error) {
+            console.error(
+              "[TimeTrak Web] ❌ Failed to send callback via BroadcastChannel:",
+              error,
+            );
+          }
+        } else if (window.location.hash.includes("error")) {
+          console.log(
+            "[TimeTrak Web] ❌ Error in OAuth callback:",
+            window.location.hash,
+          );
+
+          // Send error to main tab via BroadcastChannel
+          try {
+            const channel = new BroadcastChannel("oauth_callback_channel");
+            channel.postMessage({
+              type: "oauth_callback",
+              url: window.location.href,
+            });
+            console.log("[TimeTrak Web] 📡 Sent OAuth error to main tab");
+            channel.close();
+
+            // Check if this is an OAuth tab that should close
+            const urlParams = new URLSearchParams(window.location.search);
+            const isOAuthTab = urlParams.has('_oauth_tab');
+            const hasOpener = !!window.opener;
+            
+            if (isOAuthTab || hasOpener) {
+              console.log("[TimeTrak Web] 🔄 Closing OAuth tab in 1000ms...");
+              
+              document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:18px;color:#666;">❌ Login failed. Closing this tab...</div>';
+              
+              setTimeout(() => {
+                window.close();
+                
+                setTimeout(() => {
+                  if (!window.closed) {
+                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;text-align:center;padding:20px;"><div><h2 style="color:#f44336;">❌ Login Failed</h2><p style="color:#666;margin-top:10px;">You can close this tab and return to the main window.</p></div></div>';
+                  }
+                }, 500);
+              }, 1000);
+            }
+          } catch (error) {
+            console.error(
+              "[TimeTrak Web] ❌ Failed to send error via BroadcastChannel:",
+              error,
+            );
+          }
+        }
+      } else {
+        console.log("[TimeTrak Web] No OAuth callback parameters in URL");
+      }
+
+      // Log when Flutter starts loading
+      window.addEventListener("load", function () {
+        console.log(
+          "[TimeTrak Web] Window fully loaded, Flutter should initialize now",
+        );
+      });
+    </script>
+  </head>
+  <body>
+    <script>
+      console.log("[TimeTrak Web] Body loaded, starting Flutter app...");
+    </script>
+    <script src="flutter_bootstrap.js" async></script>
+  </body>
+</html>

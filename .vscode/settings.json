@@ -1,0 +1,13 @@
+{
+  // Supabase Edge Functions are Deno, not Node: let the Deno extension
+  // type-check them instead of VS Code's built-in TypeScript.
+  "deno.enablePaths": ["supabase/functions"],
+  "deno.lint": true,
+  // Project vocabulary for the Code Spell Checker extension.
+  "cSpell.words": [
+    "Trak", "timetrak", "timesheet", "timesheets", "supabase", "postgrest",
+    "RPCs", "impersonation", "Impersonation", "sqflite", "gotrue",
+    "colour", "colours", "behaviour", "authorisation", "personalise",
+    "organisation", "ellipsize", "entrance", "Modrinth", "Jakarta"
+  ]
+}

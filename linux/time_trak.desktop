@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Time Trak
+Comment=Time tracking application with attendance management
+Exec=time_trak
+Icon=clock
+Terminal=false
+Categories=Office;Utility;
+StartupNotify=true
+X-GNOME-Autostart-enabled=true
